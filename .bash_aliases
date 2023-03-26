@@ -35,8 +35,15 @@ alias gm='git merge'
 alias gcl='git clone'
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 
-#K8s
-#Set up autocompletion and shortcut
+# Docker
+alias d='docker'
+alias dps='d ps'
+alias di='d images'
+alias dcr='d container run'
+alias drm='d rm'
+
+# K8s
+# Set up autocompletion and shortcut
 source <(kubectl completion bash)
 alias k='kubectl'
 alias kg='k get'
