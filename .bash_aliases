@@ -6,6 +6,7 @@ mk() {
 
 alias ..='cd ..'
 alias ...='cd ../..'
+alias cd.='cd ~/.dotfiles'
 alias ls='ls -FG'
 alias la='ls -aFG'
 alias ll='ls -lFG' 
@@ -20,6 +21,7 @@ alias v='vim -p'
 alias va='vim -p *'
 alias vbrc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
+
 # Git
 alias gc='git commit -m'
 alias gs='git status'
@@ -38,7 +40,9 @@ alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 # Docker
 alias d='docker'
 alias dps='d ps'
-alias di='d images'
+alias di='d image'
+alias dils='d image ls'
+alias dc='d container'
 alias dcr='d container run'
 alias drm='d rm'
 
