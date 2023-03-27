@@ -1,7 +1,16 @@
 # Aliases
 # Filesystem navigation
+
+# Create and change into directory
 mk() {
     mkdir $1 && cd $1
+}
+
+# Change into .dotfiles directory and commit changes
+updot() {
+  cd ~/.dotfiles;
+  git add . && git commit -m "$1" && git push origin main;
+  cd -
 }
 
 alias ..='cd ..'
@@ -45,7 +54,7 @@ alias dils='d image ls'
 alias dc='d container'
 alias dcr='d container run'
 alias drm='d rm'
-alias dcc='docker-compose'
+alias dcc='docker compose'
 alias dccu='dcc up'
 alias dccud='dcc up -d'
 alias dccd='dcc down'
