@@ -45,6 +45,10 @@ alias dils='d image ls'
 alias dc='d container'
 alias dcr='d container run'
 alias drm='d rm'
+alias dcc='docker-compose'
+alias dccu='dcc up'
+alias dccud='dcc up -d'
+alias dccd='dcc down'
 
 # K8s
 # Set up autocompletion and shortcut
