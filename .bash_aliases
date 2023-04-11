@@ -3,18 +3,19 @@
 
 # Create and change into directory
 mk() {
-    mkdir $1 && cd $1
+	mkdir $1 && cd $1
 }
 
 # Change into .dotfiles directory and commit changes
 updot() {
-  cd ~/.dotfiles;
-  git add . && git commit -m "$1" && git push origin main;
-  cd -
+	cd $HOME/.dotfiles;
+	git add . && git commit -m "$1" && git push origin main;
+	cd -
 }
 
 alias ..='cd ..'
 alias ...='cd ../..'
+alias cdr='cd ~/repos'
 alias cd.='cd ~/.dotfiles'
 alias ls='ls -FG'
 alias la='ls -aFG'
@@ -22,18 +23,24 @@ alias ll='ls -lFG'
 alias lla='ls -laFG'
 alias l.='ls -dFG .*'
 alias ll.='ls -ldFG .*'
-alias sb='source ~/.bashrc'
+alias .b='. ~/.bash_profile'
 alias grep='rg'
 
 # Vim
 alias v='vim -p'
 alias va='vim -p *'
+alias vvrc='vim ~/.vimrc'
+alias vbsh='vim -p ~/.bash_profile ~/.bashrc ~/.bash_aliases'
+alias vbp='vim ~/.bash_profile'
 alias vbrc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
 
 # Git
+gca() {
+	git add . && git commit -m "$1";
+}
 alias gc='git commit -m'
-alias gst='git status'
+alias gs='git status'
 alias ga='git add'
 alias gl='git log'
 alias gpuo='git push origin'
