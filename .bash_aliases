@@ -13,6 +13,11 @@ updot() {
 	cd -
 }
 
+# Program substitutions
+alias grep='rg'
+alias cat='bat'
+alias less='bat'
+
 alias ..='cd ..'
 alias ...='cd ../..'
 alias cdr='cd ~/repos'
@@ -24,13 +29,12 @@ alias lla='ls -laFG'
 alias l.='ls -dFG .*'
 alias ll.='ls -ldFG .*'
 alias .b='. ~/.bash_profile'
-alias grep='rg'
 
 # Vim
-alias v='vim -p'
-alias va='vim -p *'
+alias v='vim'
+alias va='vim *'
 alias vvrc='vim ~/.vimrc'
-alias vbsh='vim -p ~/.bash_profile ~/.bashrc ~/.bash_aliases'
+alias vbsh='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc'
 alias vbp='vim ~/.bash_profile'
 alias vbrc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
