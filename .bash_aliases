@@ -1,4 +1,7 @@
 # Aliases
+# Enable alias expansion to access aliases across system
+shopt -s expand_aliases
+
 # Filesystem navigation
 
 # Create and change into directory
@@ -46,7 +49,9 @@ gca() {
 alias gc='git commit -m'
 alias gs='git status'
 alias ga='git add'
-alias gl='git log'
+alias gl='git log --pretty=oneline'
+alias gll='git log --pretty=format:"[%h] %ae, %ar: %s" --stat'
+alias gd='git diff --color-words'
 alias gpo='git push origin'
 alias gplo='git pull origin'
 alias gra='git remote add'

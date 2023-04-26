@@ -3,6 +3,7 @@
 if [[ -f  $HOME/Entertainment/CS/Books/TLCL-19.01.pdf ]]; then
 	alias tlcl="open $HOME/Entertainment/CS/Books/TLCL-19.01.pdf"
 fi
+
 # Open Vim reference page via browser
 alias vwv='open http://linuxcommand.org/lc3_adv_vimvigor.php'
 
@@ -27,7 +28,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# FZF
 # Enable fzf keybindings for Bash:
 . /opt/local/share/fzf/shell/key-bindings.bash
 # Enable fuzzy auto-completion for Bash:
 . /opt/local/share/fzf/shell/completion.bash
+# Custom fzf defaults
+export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'bat -n --color=always {}'"
+
