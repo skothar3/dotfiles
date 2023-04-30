@@ -28,7 +28,7 @@ set showmatch
 " Set line numbering
 set number
 " Indent highlighting
-set list lcs=tab:\|·\|,trail:·
+set list lcs=tab:··\|,trail:·
 " Get aliases from bash dotfiles
 let $BASH_ENV = "~/.bash_aliases"
 " Set syntax highlighting
@@ -44,20 +44,18 @@ endif
 
 " KEY MAPPINGS ---------------------- {{{
 
-" NORMAL MODE ---------------------- 
-" Shorcut to edit vimrc in vsplit pane
+" NORMAL MODE ---------------------- {{{
+" Edit vimrc in vsplit pane
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " Source vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
-" Normal enter to insert enter 
-nnoremap <CR> i<CR><Esc>
 " Surround word in double quotes
 nnoremap <leader>" viw<Esc>a"<Esc>bi"<Esc>lel
 " Surround word in single quotes
 nnoremap <leader>' viw<Esc>a'<Esc>bi'<Esc>lel
-" Shortcut to open NERDTree
+" Open NERDTree
 nnoremap <leader>] :NERDTreeToggle<CR>
-" Shortcut to open terminal at bottom
+" Open terminal at bottom
 nnoremap <leader>t :bo term<CR>
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
@@ -67,15 +65,17 @@ nnoremap W :w<CR>
 " Save and close current buffer
 nnoremap Q :w\|bd<CR>
 " Quick quit
-nnoremap QQ :qa!<CR>
+nnoremap QQ :wqa<CR>
 " Quick open bash dotfiles
 nnoremap <leader>vba :e ~/.bash_aliases<CR>
 nnoremap <leader>vbrc :e ~/.bashrc<CR>
 nnoremap <leader>vbp :e ~/.bash_profile<CR>
+" Cycle buffers
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
+"}}}
 
-" INSERT MODE ---------------------- 
-" Delete line
-inoremap <C-d> <Esc>ddi
+" INSERT MODE ---------------------- {{{
 " Easier Esc
 inoremap jk <Esc>
 inoremap <Esc> <nop>
@@ -83,14 +83,15 @@ inoremap <Esc> <nop>
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
-" Paste in insert mode
-inoremap <C-p> <C-r>0
-" Quick save
-inoremap ww <Esc>:w<CR>
+" Quicker quotes
+inoremap " ""<Left>
+inoremap ' ''<Left>
+"}}}
 
-" VISUAL MODE ---------------------- 
+" VISUAL MODE ---------------------- {{{
 " Easier Esc
 vnoremap jk <Esc>
+"}}}
 
 "}}}
 
@@ -142,6 +143,9 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 " NERDCOMMENTER ---------------------- {{{
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+" Allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+nnoremap <leader>\ <plug>NERDCommenterInvert
 "}}}
 
 " VIM-PLUG ---------------------- {{{

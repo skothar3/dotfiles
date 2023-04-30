@@ -1,3 +1,5 @@
+#!/usr/local/bin/bash
+
 # Aliases
 # Enable alias expansion to access aliases across system
 shopt -s expand_aliases
@@ -17,6 +19,7 @@ updot() {
 }
 
 # Program substitutions
+alias sudo='sudo '
 alias grep='rg'
 alias cat='bat'
 alias less='bat'
@@ -64,35 +67,35 @@ alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 
 # Docker
 alias d='docker'
-alias dps='d ps'
-alias di='d image'
-alias dils='d image ls'
-alias dc='d container'
-alias dcr='d container run'
-alias drm='d rm'
-alias dv='d volume'
+alias dps='docker ps'
+alias di='docker image'
+alias dils='docker image ls'
+alias dc='docker container'
+alias dcr='docker container run'
+alias drm='docker rm'
+alias dv='docker volume'
 alias dcc='docker compose'
-alias dccu='dcc up'
-alias dccud='dcc up -d'
-alias dccd='dcc down'
+alias dccu='docker compose up'
+alias dccud='docker compose up -d'
+alias dccd='docker compose down'
 
 # K8s
 # Set up autocompletion and shortcut
 source <(kubectl completion bash)
 alias k='kubectl'
-alias kg='k get'
-alias kgp='kg pods'
-alias kgn='kg nodes'
-alias kgsvc='kg svc'
-alias kd='k describe'
-alias kdp='kd pods'
-alias kdn='kd nodes'
-alias kdsvc='kd svc'
-alias ka='k apply'
-alias kaf='ka -f'
-alias krm='k delete'
-alias krmp='krm pods'
-alias krmn='krm nodes'
-alias krmsvc='krm svc'
+alias kg='kubectl get'
+alias kgp='kubectl get pods'
+alias kgn='kubectl get nodes'
+alias kgsvc='kubectl get svc'
+alias kd='kubectl describe'
+alias kdp='kubectl describe pods'
+alias kdn='kubectl describe nodes'
+alias kdsvc='kubectl describe svc'
+alias ka='kubectl apply'
+alias kaf='kubectl apply -f'
+alias krm='kubectl delete'
+alias krmp='kubectl delete pods'
+alias krmn='kubectl delete nodes'
+alias krmsvc='kubectl delete svc'
 alias dry='--dry-run=client -o yaml'
 complete -o default -F __start_kubectl k

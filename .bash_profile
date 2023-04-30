@@ -1,8 +1,10 @@
+#!/usr/local/bin/bash
+
 # Include .bashrc
 [[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
 
 # Include bash aliases
-[[ -f $HOME/.bash_aliases ]] && . $HOME/.bash_aliases
+c[ -f $HOME/.bash_aliases ]] && . $HOME/.bash_aliases
 
 # Include bash key bindings
 [[ -f $HOME/.bash_key_bindings ]] && . $HOME/.bash_key_bindings
