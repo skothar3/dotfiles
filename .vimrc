@@ -44,48 +44,49 @@ endif
 
 " KEY MAPPINGS ---------------------- {{{
 
+" Map the leader key to a spacebar.
+ let mapleader = "\<Space>"
 " NORMAL MODE ---------------------- {{{
 " Edit vimrc in vsplit pane
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " Source vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
 " Surround word in double quotes
-nnoremap <leader>" viw<Esc>a"<Esc>bi"<Esc>lel
+nnoremap <silent> <leader>" viw<Esc>a"<Esc>bi"<Esc>lel
 " Surround word in single quotes
-nnoremap <leader>' viw<Esc>a'<Esc>bi'<Esc>lel
+nnoremap <silent> <leader>' viw<Esc>a'<Esc>bi'<Esc>lel
 " Open NERDTree
-nnoremap <leader>] :NERDTreeToggle<CR>
-" Open terminal at bottom
-nnoremap <leader>t :bo term<CR>
+nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+" Open terminal at bottom with aliases
+nnoremap <leader>t :bo term<CR><CR>. ~/.bash_aliases<CR>. ~/.bashrc<CR>
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
 " Quick save
 nnoremap W :w<CR>
-" Save and close current buffer
+" Save and close current buffer and then it
 nnoremap Q :w\|bd<CR>
 " Quick quit
 nnoremap QQ :wqa<CR>
 " Quick open bash dotfiles
-nnoremap <leader>vba :e ~/.bash_aliases<CR>
-nnoremap <leader>vbrc :e ~/.bashrc<CR>
-nnoremap <leader>vbp :e ~/.bash_profile<CR>
+nnoremap <leader>eba :e ~/.bash_aliases<CR>
+nnoremap <leader>ebrc :e ~/.bashrc<CR>
+nnoremap <leader>ebp :e ~/.bash_profile<CR>
 " Cycle buffers
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
+" Remap NERDCommenter comment invert
+nnoremap <leader><leader> <plug>NERDCommenterInvert
 "}}}
 
 " INSERT MODE ---------------------- {{{
-" Easier Esc
-inoremap jk <Esc>
+" Escape to normal mode and stay in place
+inoremap jk <Esc>l
 inoremap <Esc> <nop>
 " Quicker brackets
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
-" Quicker quotes
-inoremap " ""<Left>
-inoremap ' ''<Left>
 "}}}
 
 " VISUAL MODE ---------------------- {{{
@@ -145,7 +146,6 @@ let g:airline#extensions#tabline#buffer_nr_show = 1
 let g:NERDSpaceDelims = 1
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
-nnoremap <leader>\ <plug>NERDCommenterInvert
 "}}}
 
 " VIM-PLUG ---------------------- {{{

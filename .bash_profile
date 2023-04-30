@@ -4,7 +4,7 @@
 [[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
 
 # Include bash aliases
-c[ -f $HOME/.bash_aliases ]] && . $HOME/.bash_aliases
+[[ -f $HOME/.bash_aliases ]] && . $HOME/.bash_aliases
 
 # Include bash key bindings
 [[ -f $HOME/.bash_key_bindings ]] && . $HOME/.bash_key_bindings

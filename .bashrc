@@ -2,8 +2,8 @@
 
 ## File aliases
 # Open The Linux Cmd Line by W. Stotts
-[[ -f  $HOME/Entertainment/CS/Books/TLCL-19.01.pdf ]] && \
-	alias tlcl="open $HOME/Entertainment/CS/Books/TLCL-19.01.pdf"
+[[ -f  $HOME/Documents/CS/Books/TLCL-19.01.pdf ]] && \
+	alias tlcl="open $HOME/Documents/CS/Books/TLCL-19.01.pdf"
 
 # Open Vim reference page via browser
 alias vwv='open http://linuxcommand.org/lc3_adv_vimvigor.php'
