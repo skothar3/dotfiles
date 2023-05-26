@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 # Aliases
 # Enable alias expansion to access aliases across system

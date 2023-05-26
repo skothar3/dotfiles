@@ -21,6 +21,8 @@ set incsearch
 " set hlsearch
 " Highlight the current line
 set cursorline
+" 2 lines above/below cursor when scrolling
+set scrolloff=2
 " Allow yy, etc. to interact with OS X clipboard
 set clipboard=unnamed
 " Set show matching parentheses
@@ -58,7 +60,7 @@ nnoremap <silent> <leader>' viw<Esc>a'<Esc>bi'<Esc>lel
 " Open NERDTree
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 " Open terminal at bottom with aliases
-nnoremap <leader>t :bo term<CR><CR>. ~/.bash_aliases<CR>. ~/.bashrc<CR>
+nnoremap <leader>t :bo term<CR>. ~/.bash_aliases<CR>. ~/.bashrc<CR>
 " Don't let x and c to spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
@@ -72,6 +74,7 @@ nnoremap QQ :wqa<CR>
 nnoremap <leader>eba :e ~/.bash_aliases<CR>
 nnoremap <leader>ebrc :e ~/.bashrc<CR>
 nnoremap <leader>ebp :e ~/.bash_profile<CR>
+nnoremap <leader>ebsh :e ~/.bash_profile<CR>:e ~/.bashrc<CR>:e ~/.bash_aliases<CR>
 " Cycle buffers
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>

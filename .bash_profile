@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 # Include .bashrc
 [[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
@@ -9,8 +9,14 @@
 # Include bash key bindings
 [[ -f $HOME/.bash_key_bindings ]] && . $HOME/.bash_key_bindings
 
+# Include bash autocompletion
+[ -f /usr/local/etc/bash_completion ] && . /usr/local/etc/bash_completion
+
 # Load rbenv to manage Ruby versions on startup
 eval "$(rbenv init -)"
+
+# Export home directory for Java Tomcat
+export CATALINA_HOME=/usr/local/Cellar/tomcat/10.1.8/libexec
 
 # Add $HOME/bin to path
 export PATH="$HOME/bin:$PATH"
@@ -23,3 +29,7 @@ export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 export PS1="\u@\h:\W \$ "
 
 
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

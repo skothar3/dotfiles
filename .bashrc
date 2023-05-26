@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#!/bin/bash
 
 ## File aliases
 # Open The Linux Cmd Line by W. Stotts
@@ -43,7 +43,8 @@ if cmd_exist fzf; then
 	# Custom fzf defaults
 	export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'bat -n --color=always {}'"
 	if cmd_exist fd; then
-		export FZF_DEFAULT_COMMAND="fd --hidden --follow --exclude '.git'"
+		export FZF_DEFAULT_COMMAND="fd . --hidden --follow --exclude '.git' --ignore-file $HOME/.ignore $HOME"
+		export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
 	fi
 	export FZF_COMPLETION_TRIGGER='--'
 fi
