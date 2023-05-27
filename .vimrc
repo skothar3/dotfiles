@@ -42,13 +42,15 @@ colorscheme gruvbox
 if has('mouse')
   set mouse=a
 endif
+" Highlight code folds 
+highlight Folded ctermfg=yellow ctermbg=NONE
 "}}}
 
 " KEY MAPPINGS ---------------------- {{{
 
 " Map the leader key to a spacebar.
- let mapleader = "\<Space>"
-" NORMAL MODE ---------------------- {{{
+ let mapleader = ","
+" NORMAL MODE ---------------------- 
 " Edit vimrc in vsplit pane
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " Source vimrc
@@ -61,9 +63,11 @@ nnoremap <silent> <leader>' viw<Esc>a'<Esc>bi'<Esc>lel
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 " Open terminal at bottom with aliases
 nnoremap <leader>t :bo term<CR>. ~/.bash_aliases<CR>. ~/.bashrc<CR>
-" Don't let x and c to spoil the yank register
+" Don't let x and c spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
+" Toggle code folds
+nnoremap <space> za
 " Quick save
 nnoremap W :w<CR>
 " Save and close current buffer and then it
@@ -80,9 +84,8 @@ nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 " Remap NERDCommenter comment invert
 nnoremap <leader><leader> <plug>NERDCommenterInvert
-"}}}
 
-" INSERT MODE ---------------------- {{{
+" INSERT MODE ---------------------- 
 " Escape to normal mode and stay in place
 inoremap jk <Esc>l
 inoremap <Esc> <nop>
@@ -90,12 +93,10 @@ inoremap <Esc> <nop>
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
-"}}}
 
-" VISUAL MODE ---------------------- {{{
+" VISUAL MODE ---------------------- 
 " Easier Esc
 vnoremap jk <Esc>
-"}}}
 
 "}}}
 

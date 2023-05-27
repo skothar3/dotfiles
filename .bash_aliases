@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Aliases
-# Enable alias expansion to access aliases across system
+# Enable alias expansion even when shell is non-interactive to access aliases across system
 shopt -s expand_aliases
 
-# Filesystem navigation
+# Functions{{{
 
 # Create and change into directory
 mk() {
@@ -17,8 +17,9 @@ updot() {
 	git add . && git commit -m "$1" && git push origin main;
 	cd -
 }
+# }}}
 
-# Program substitutions
+# Program substitutions{{{
 alias sudo='sudo '
 alias grep='rg'
 alias cat='bat'
@@ -35,8 +36,9 @@ alias lla='ls -laFG'
 alias l.='ls -dFG .*'
 alias ll.='ls -ldFG .*'
 alias .b='. ~/.bash_profile'
+# }}}
 
-# Vim
+# Vim{{{
 alias v='vim'
 alias va='vim *'
 alias vvrc='vim ~/.vimrc'
@@ -44,8 +46,9 @@ alias vbsh='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc'
 alias vbp='vim ~/.bash_profile'
 alias vbrc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
+# }}}
 
-# Git
+# Git{{{
 gca() {
 	git add . && git commit -m "$1";
 }
@@ -64,8 +67,9 @@ alias gcb='git checkout -b'
 alias gm='git merge'
 alias gcl='git clone'
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
+# }}}
 
-# Docker
+# Docker{{{
 alias d='docker'
 alias dps='docker ps'
 alias di='docker image'
@@ -78,8 +82,9 @@ alias dcc='docker compose'
 alias dccu='docker compose up'
 alias dccud='docker compose up -d'
 alias dccd='docker compose down'
+# }}}
 
-# K8s
+# K8s{{{
 # Set up autocompletion and shortcut
 source <(kubectl completion bash)
 alias k='kubectl'
@@ -99,3 +104,8 @@ alias krmn='kubectl delete nodes'
 alias krmsvc='kubectl delete svc'
 alias dry='--dry-run=client -o yaml'
 complete -o default -F __start_kubectl k
+# }}}
+
+# Multipass{{{
+alias m='multipass'
+# }}}
