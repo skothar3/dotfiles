@@ -1,1 +1,69 @@
-",,": alias-expand-line
+# Vi mode for readline
+set editing-mode vi
+# Display vi-mode in prompt
+set show-mode-in-prompt on
+set vi-ins-mode-string "(I) "
+set vi-cmd-mode-string "(C) "
+
+# Be more intelligent when autocompleting by also looking at the text after
+# the cursor. For example, when the current line is "cd ~/src/mozil", and
+# the cursor is on the "z", pressing Tab will not autocomplete it to "cd
+# ~/src/mozillail", but to "cd ~/src/mozilla". (This is supported by the
+# Readline used by Bash 4.)
+set skip-completed-text on
+# Perform partial (common) completion on the first Tab press, only start
+# cycling full results on the second Tab press (from bash version 5)
+set menu-complete-display-prefix on
+# Words that have more than one possible completion without any possible partial completion
+# cause the matches to be listed immediately instead of ringing the bell
+set show-all-if-unmodified on
+# words which have more than one possible completion cause the matches to be listed immediately
+set show-all-if-ambiguous on
+# filename matching and completion in a case-insensitive fashion
+set completion-ignore-case on
+
+## Bindings for tab completion (equivalent to "bind '"xx": function' via terminal)
+# If there are multiple matches for completion, Tab should cycle through them
+TAB:menu-complete
+# And Shift-Tab should cycle backwards
+"\e[Z": menu-complete-backward
+# Cycle through history based on characters already typed on the line
+"\e[A":history-search-backward
+"\e[B":history-search-forward
+# Keep Ctrl-Left and Ctrl-Right working when the above are used
+"\e[1;5C":forward-word
+"\e[1;5D":backward-word
+
+# Vi-mode-specific key mappings
+$if mode=vi
+	set keymap vi-command
+	# Re-read-init-file
+	"\C-x\C-r": re-read-init-file
+
+	"daw": "lbdW"
+	"yaw": "lbyW"
+	"caw": "lbcW"
+	"da\"": "lF\"df\""
+	"di\"": "lF\"lmtf\"d`t"
+	"ci\"": "di\"i"
+	"ca\"": "da\"i"
+	"da'": "lF'df'"
+	"di'": "lF'lmtf'd`t"
+	"ci'": "di'i"
+	"ca'": "da'i"
+
+	set keymap vi-insert
+	# Escape to normal mode
+	"jk": vi-movement-mode
+	# Quick quotes & brackets using \C-v (quoted insert) to eliminate recursion
+	"\"": "\C-v"\C-v"\ei" 
+	"\'": "\C-v'\C-v'\ei" 
+	"(": "\C-v(\C-v)\ei" 
+	"[": "\C-v[\C-v]\ei" 
+	# Expands alias in-line
+	",,": alias-expand-line
+	
+	# Prefixes the line with sudo, if Alt+S is pressed
+	"\es": "\e0isudo \eA"
+	
+$endif

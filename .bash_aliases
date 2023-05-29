@@ -19,7 +19,7 @@ updot() {
 }
 # }}}
 
-# Program substitutions{{{
+# Command line {{{
 alias sudo='sudo '
 alias grep='rg'
 alias cat='bat'
@@ -46,6 +46,7 @@ alias vbsh='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc'
 alias vbp='vim ~/.bash_profile'
 alias vbrc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
+alias vdot='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc ~/.inputrc'
 # }}}
 
 # Git{{{

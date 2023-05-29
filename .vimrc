@@ -50,15 +50,12 @@ highlight Folded ctermfg=yellow ctermbg=NONE
 
 " Map the leader key to a spacebar.
  let mapleader = ","
+
 " NORMAL MODE ---------------------- 
 " Edit vimrc in vsplit pane
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " Source vimrc
 nnoremap <leader>sv :source $MYVIMRC<CR>
-" Surround word in double quotes
-nnoremap <silent> <leader>" viw<Esc>a"<Esc>bi"<Esc>lel
-" Surround word in single quotes
-nnoremap <silent> <leader>' viw<Esc>a'<Esc>bi'<Esc>lel
 " Open NERDTree
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 " Open terminal at bottom with aliases
@@ -66,24 +63,26 @@ nnoremap <leader>t :bo term<CR>. ~/.bash_aliases<CR>. ~/.bashrc<CR>
 " Don't let x and c spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
+" Easier to get command prompt
+nnoremap ; :
 " Toggle code folds
 nnoremap <space> za
 " Quick save
-nnoremap W :w<CR>
+nnoremap W :update<CR>
 " Save and close current buffer and then it
-nnoremap Q :w\|bd<CR>
+nnoremap E :w\|bd<CR>
 " Quick quit
-nnoremap QQ :wqa<CR>
+nnoremap EE :wqa<CR>
 " Quick open bash dotfiles
-nnoremap <leader>eba :e ~/.bash_aliases<CR>
-nnoremap <leader>ebrc :e ~/.bashrc<CR>
-nnoremap <leader>ebp :e ~/.bash_profile<CR>
-nnoremap <leader>ebsh :e ~/.bash_profile<CR>:e ~/.bashrc<CR>:e ~/.bash_aliases<CR>
+nnoremap <leader>vba :e ~/.bash_aliases<CR>
+nnoremap <leader>vbrc :e ~/.bashrc<CR>
+nnoremap <leader>vbp :e ~/.bash_profile<CR>
+nnoremap <leader>vbsh :e ~/.bash_profile<CR>:e ~/.bashrc<CR>:e ~/.bash_aliases<CR>
 " Cycle buffers
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
 " Remap NERDCommenter comment invert
-nnoremap <leader><leader> <plug>NERDCommenterInvert
+nnoremap <leader><space> <plug>NERDCommenterInvert
 
 " INSERT MODE ---------------------- 
 " Escape to normal mode and stay in place
@@ -93,11 +92,14 @@ inoremap <Esc> <nop>
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
+" Paste in insert mode
+inoremap <C-p> <C-r>0
 
 " VISUAL MODE ---------------------- 
 " Easier Esc
 vnoremap jk <Esc>
-
+" Easier to get command prompt
+vnoremap ; :
 "}}}
 
 " ABBREVIATIONS ---------------------- {{{
