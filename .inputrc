@@ -39,7 +39,8 @@ $if mode=vi
 	set keymap vi-command
 	# Re-read-init-file
 	"\C-x\C-r": re-read-init-file
-
+	"\033f":forward-word
+	"\033b":backward-word
 	"daw": "lbdW"
 	"yaw": "lbyW"
 	"caw": "lbcW"
@@ -55,6 +56,8 @@ $if mode=vi
 	set keymap vi-insert
 	# Escape to normal mode
 	"jk": vi-movement-mode
+	"\033f":forward-word
+	"\033b":backward-word
 	# Quick quotes & brackets using \C-v (quoted insert) to eliminate recursion
 	"\"": "\C-v"\C-v"\ei" 
 	"\'": "\C-v'\C-v'\ei" 
