@@ -100,6 +100,7 @@ inoremap <C-p> <C-r>0
 vnoremap jk <Esc>
 " Easier to get command prompt
 vnoremap ; :
+vnoremap <leader><space> <plug>NERDCommenterInvert
 "}}}
 
 " ABBREVIATIONS ---------------------- {{{

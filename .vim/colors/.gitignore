@@ -1,0 +1,2 @@
+# Ignore gruvbox symlink so it can be manually installed by install.sh
+gruvbox.vim

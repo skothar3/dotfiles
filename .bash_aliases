@@ -26,9 +26,13 @@ updot() {
 
 # Command line {{{
 alias sudo='sudo '
-alias grep='rg'
-alias cat='bat'
-alias less='bat'
+if cmd_exist rg; then
+	alias grep='rg'
+fi
+if cmd_exist bat; then
+	alias cat='bat'
+	alias less='bat'
+fi
 
 alias ..='cd ..'
 alias ...='cd ../..'

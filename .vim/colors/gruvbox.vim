@@ -1,1 +1,0 @@
-/Users/sid/.vim/plugged/gruvbox/colors/gruvbox.vim
