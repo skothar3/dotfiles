@@ -9,8 +9,6 @@
 alias vwv='open http://linuxcommand.org/lc3_adv_vimvigor.php'
 
 ## Options
-# Change umask to make directory sharing easier
-umask 0002
 
 # Ignore duplicates in command history and increase
 # history size to 1000 lines

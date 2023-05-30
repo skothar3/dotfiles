@@ -42,11 +42,10 @@ alias .b='. ~/.bash_profile'
 alias v='vim'
 alias va='vim *'
 alias vvrc='vim ~/.vimrc'
-alias vbsh='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc'
+alias vbsh='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc ~/.inputrc'
 alias vbp='vim ~/.bash_profile'
 alias vbrc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
-alias vdot='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc ~/.inputrc'
 # }}}
 
 # Git{{{
@@ -85,7 +84,7 @@ alias dccud='docker compose up -d'
 alias dccd='docker compose down'
 # }}}
 
-# K8s{{{
+# Kubernetes{{{
 # Set up autocompletion and shortcut
 source <(kubectl completion bash)
 alias k='kubectl'
