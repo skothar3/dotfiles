@@ -5,7 +5,7 @@ files=(.bash_aliases .bash_profile .bashrc .gitconfig .gitignore_global .inputrc
 OLDDOTFILES=$HOME/.olddotfiles
 DOTFILES=$HOME/dotfiles
 
-mkdir OLDDOTFILES && mkdir DOTFILES
+mkdir $OLDDOTFILES
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create
 # symlinks

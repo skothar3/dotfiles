@@ -4,6 +4,11 @@
 # Enable alias expansion even when shell is non-interactive to access aliases across system
 shopt -s expand_aliases
 
+# Check if a command exists
+cmd_exist () {
+    command -v $1 &> /dev/null
+}
+
 # Functions{{{
 
 # Create and change into directory
@@ -85,25 +90,27 @@ alias dccd='docker compose down'
 # }}}
 
 # Kubernetes{{{
-# Set up autocompletion and shortcut
-source <(kubectl completion bash)
-alias k='kubectl'
-alias kg='kubectl get'
-alias kgp='kubectl get pods'
-alias kgn='kubectl get nodes'
-alias kgsvc='kubectl get svc'
-alias kd='kubectl describe'
-alias kdp='kubectl describe pods'
-alias kdn='kubectl describe nodes'
-alias kdsvc='kubectl describe svc'
-alias ka='kubectl apply'
-alias kaf='kubectl apply -f'
-alias krm='kubectl delete'
-alias krmp='kubectl delete pods'
-alias krmn='kubectl delete nodes'
-alias krmsvc='kubectl delete svc'
-alias dry='--dry-run=client -o yaml'
-complete -o default -F __start_kubectl k
+if cmd_exist kubectl; then
+	# Set up autocompletion and shortcut
+	source <(kubectl completion bash)
+	alias k='kubectl'
+	alias kg='kubectl get'
+	alias kgp='kubectl get pods'
+	alias kgn='kubectl get nodes'
+	alias kgsvc='kubectl get svc'
+	alias kd='kubectl describe'
+	alias kdp='kubectl describe pods'
+	alias kdn='kubectl describe nodes'
+	alias kdsvc='kubectl describe svc'
+	alias ka='kubectl apply'
+	alias kaf='kubectl apply -f'
+	alias krm='kubectl delete'
+	alias krmp='kubectl delete pods'
+	alias krmn='kubectl delete nodes'
+	alias krmsvc='kubectl delete svc'
+	alias dry='--dry-run=client -o yaml'
+	complete -o default -F __start_kubectl k
+fi
 # }}}
 
 # Multipass{{{
