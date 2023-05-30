@@ -1,5 +1,5 @@
 # Mac-OS
-.DS_Store
+**/.DS_Store
 
 # Vim
 # Swap
@@ -15,7 +15,7 @@ Session.vim
 Sessionx.vim
 
 # Temporary
-.netrwhist
+**/.netrwhist
 *~
 # Auto-generated tag files
 tags
@@ -23,4 +23,4 @@ tags
 [._]*.un~
 
 # Node modules 
-node_modules/
+**/node_modules/
