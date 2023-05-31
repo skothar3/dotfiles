@@ -1,12 +1,16 @@
 #!/bin/bash
 # Source as . $HOME/dotfiles/install.sh
+# Array of dot files to source
 files=(.bash_aliases .bash_profile .bashrc .gitconfig .gitignore_global .inputrc .vimrc .vim)
 
 OLD_DOTFILES=$HOME/.olddotfiles
 DOTFILES=$HOME/.dotfiles
 
-mkdir -v $DOTFILES
-mkdir -v $OLD_DOTFILES
+[[ -d $DOTFILES ]] || mkdir -v $DOTFILES
+[[ -d $OLD_DOTFILES ]] || mkdir -v $OLD_DOTFILES
+
+# Remove anything already inside $DOTFILES
+rm -r $DOTFILES/*
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create
 # symlinks
@@ -14,7 +18,11 @@ echo -e "Moving any existing dotfiles from $HOME to $OLD_DOTFILES & creating sym
 for file in "${files[@]}"; do
 	cp -R ./$file $DOTFILES/$file
 	if [[ -e $HOME/$file ]]; then
-		mv -v $HOME/$file $OLD_DOTFILES/$file
+		if [[ -s $HOME/$file ]]; then
+			rm -r $HOME/$file
+		else
+			mv -v $HOME/$file $OLD_DOTFILES/$file
+		fi
 	fi
 	ln -snfv $DOTFILES/$file $HOME/$file
 done
