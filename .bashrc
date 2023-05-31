@@ -29,7 +29,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Check if a command exists
 cmd_exist () {
-    command -v $1 &> /dev/null
+    builtin type -P "$1" &> /dev/null
 }
 
 # FZF

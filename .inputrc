@@ -53,18 +53,18 @@ $if mode=vi
 	"ca'": "da'i"
 
 	set keymap vi-insert
-# Escape to normal mode
+	# Escape to normal mode
 	"\e":vi-movement-mode
 	"jk": vi-movement-mode
 	"\033f": forward-word
 	"\033b": backward-word
-# Quick quotes & brackets using \C-v (quoted insert) to eliminate recursion
+	# Quick quotes & brackets using \C-v (quoted insert) to eliminate recursion
 	"\"": "\C-v"\C-v"\ei"
 	"\'": "\C-v'\C-v'\ei"
 	"(": "\C-v(\C-v)\ei"
 	"[": "\C-v[\C-v]\ei"
-# Expands alias in-line
+	# Expands alias in-line
 	",,": alias-expand-line
-# Prefixes the line with sudo, if Alt+S is pressed
+	# Prefixes the line with sudo, if Alt+S is pressed
 	"\es": "\e0isudo \eA"
 $endif

@@ -1,5 +1,5 @@
 #!/bin/bash
-
+echo $PATH
 # Include .bashrc
 [[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
 
@@ -11,7 +11,7 @@
 
 # Check if a command exists
 cmd_exist () {
-    command -v $1 &> /dev/null
+    builtin type -P "$1" &> /dev/null
 }
 
 # Load rbenv to manage Ruby versions on startup
@@ -28,9 +28,7 @@ fi
 export PATH="$HOME/bin:$PATH"
 
 # MacPorts Installer addition on 2023-04-09_at_20:57:46: adding an appropriate PATH variable for use with MacPorts.
-if cmd_exist port; then
-	export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-fi
+export PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 
 # Change prompt to host and working directory
 # export PS1="\e[1;32m\u@\h\e[97m:\e[34m\W\e[0;97m \$ "
