@@ -1,5 +1,5 @@
 #!/bin/bash
-echo $PATH
+
 # Include .bashrc
 [[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
 
