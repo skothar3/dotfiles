@@ -19,6 +19,7 @@ for file in "${files[@]}"; do
 done
 
 # Some ssh configuration
+echo -e "Configuring .ssh/ for future logins...\n"
 mkdir -p $HOME/.ssh/keys
 [[ -e $HOME/.ssh/config ]] || touch $HOME/.ssh/config
 [[ -e $HOME/.ssh/authorized_keys ]] || touch $HOME/.ssh/authorized_keys
@@ -35,3 +36,5 @@ ln -snfv $HOME/.vim/plugged/gruvbox/colors/gruvbox.vim $HOME/.vim/colors/gruvbox
 
 echo -e "\nSourcing $HOME/.bash_profile...\n"
 . $HOME/.bash_profile
+
+echo -e "Done!\n"
