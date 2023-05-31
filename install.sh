@@ -5,17 +5,18 @@ files=(.bash_aliases .bash_profile .bashrc .gitconfig .gitignore_global .inputrc
 OLD_DOTFILES=$HOME/.olddotfiles
 DOTFILES=$HOME/.dotfiles
 
-mv -v $HOME/dotfiles $DOTFILES
+mkdir -v $DOTFILES
 mkdir -v $OLD_DOTFILES
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create
 # symlinks
 echo -e "Moving any existing dotfiles from $HOME to $OLD_DOTFILES & creating symlinks...\n"
 for file in "${files[@]}"; do
-    if [[ -e $HOME/$file ]]; then
-	mv -v $HOME/$file $OLD_DOTFILES/$file
-    fi
-    ln -snfv $DOTFILES/$file $HOME/$file
+	cp -R ./$file $DOTFILES/$file
+	if [[ -e $HOME/$file ]]; then
+		mv -v $HOME/$file $OLD_DOTFILES/$file
+	fi
+	ln -snfv $DOTFILES/$file $HOME/$file
 done
 
 # Some ssh configuration
@@ -32,6 +33,7 @@ echo -e "Installing vim plugins...\n"
 vim -es -u $HOME/.vimrc -i NONE -c "PlugInstall" -c "qa"
 
 # Symlink vim colorscheme after gruvbox plugin is installed
+echo -e "Linking gruvbox colorscheme...\n"
 ln -snfv $HOME/.vim/plugged/gruvbox/colors/gruvbox.vim $HOME/.vim/colors/gruvbox.vim
 
 echo -e "\nSourcing $HOME/.bash_profile...\n"
