@@ -94,7 +94,9 @@ inoremap [ []<Left>
 inoremap { {}<Left>
 " Paste in insert mode
 inoremap <C-p> <C-r>0
-
+" Jump forward/backword word
+inoremap <leader><Left> <Esc>bi
+inoremap <leader><Right> <Esc>wi
 " VISUAL MODE ---------------------- 
 " Easier Esc
 vnoremap jk <Esc>

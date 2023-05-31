@@ -9,21 +9,22 @@ DOTFILES=$HOME/.dotfiles
 [[ -d $DOTFILES ]] || mkdir -v $DOTFILES
 [[ -d $OLD_DOTFILES ]] || mkdir -v $OLD_DOTFILES
 
-# Remove anything already inside $DOTFILES
-rm -rf $DOTFILES/*
-
-# move any existing dotfiles in homedir to dotfiles_old directory, then create
-# symlinks
+# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 echo -e "Moving any existing dotfiles from $HOME to $OLD_DOTFILES & creating symlinks...\n"
 for file in "${files[@]}"; do
+	# Remove any pre-existing same-named file already in $DOTFILES from a previous install
+	rm -rf $DOTFILES/$file
+	# Copy dotfile into $DOTFILES
 	cp -R ./$file $DOTFILES/$file
-	if [[ -e $HOME/$file ]]; then
-		if [[ -s $HOME/$file ]]; then
-			rm -rf $HOME/$file
-		else
-			mv -v $HOME/$file $OLD_DOTFILES/$file
-		fi
+	# If a same-named file already exists in $HOME:
+	# 1. Remove if it is a symlink or 
+	# 2. Move it if it's an actual file
+	if [[ -h $HOME/$file ]]; then
+		rm -rf $HOME/$file
+	elif [[ -f $HOME/$file ]]; then
+		mv -v $HOME/$file $OLD_DOTFILES/$file
 	fi
+	# Create a new symlink at $HOME to the dotfile
 	ln -snfv $DOTFILES/$file $HOME/$file
 done
 
