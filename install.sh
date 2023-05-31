@@ -10,7 +10,7 @@ DOTFILES=$HOME/.dotfiles
 [[ -d $OLD_DOTFILES ]] || mkdir -v $OLD_DOTFILES
 
 # Remove anything already inside $DOTFILES
-rm -r $DOTFILES/*
+rm -rf $DOTFILES/*
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create
 # symlinks
@@ -19,7 +19,7 @@ for file in "${files[@]}"; do
 	cp -R ./$file $DOTFILES/$file
 	if [[ -e $HOME/$file ]]; then
 		if [[ -s $HOME/$file ]]; then
-			rm -r $HOME/$file
+			rm -rf $HOME/$file
 		else
 			mv -v $HOME/$file $OLD_DOTFILES/$file
 		fi
