@@ -6,7 +6,7 @@ files=(.bash_aliases .bash_profile .bashrc .gitconfig .gitignore_global .inputrc
 OLD_DOTFILES=$HOME/.olddotfiles
 DOTFILES=$HOME/.dotfiles
 
-[[ -d $DOTFILES ]] && rm -rf $DOTFILES/*
+[[ -d $DOTFILES ]] && rm -rf $DOTFILES
 
 mv -v $HOME/dotfiles $DOTFILES
 [[ -d $OLD_DOTFILES ]] || mkdir -v $OLD_DOTFILES
