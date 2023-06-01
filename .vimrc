@@ -1,4 +1,9 @@
 " BASIC SETTINGS ---------------------- {{{
+" Set up indentation
+set tabstop=8
+set softtabstop=4
+set shiftwidth=4
+set expandtab
 " Allow filetype recognition by Vim
 filetype on
 " Allow custom filetype plugins
@@ -27,8 +32,8 @@ set scrolloff=2
 set clipboard=unnamed
 " Set show matching parentheses
 set showmatch
-" Set line numbering
-set number
+" Set relative line numbering
+set relativenumber
 " Indent highlighting
 set list lcs=tab:··\|,trail:·
 " Get aliases from bash dotfiles

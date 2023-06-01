@@ -4,11 +4,6 @@
 # Enable alias expansion even when shell is non-interactive to access aliases across system
 shopt -s expand_aliases
 
-# Check if a command exists
-cmd_exist () {
-    builtin type -P "$1" &> /dev/null
-}
-
 # Functions{{{
 
 # Create and change into directory
