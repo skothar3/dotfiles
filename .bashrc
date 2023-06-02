@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Check if a command exists
+cmd_exist () {
+    builtin type -P "$1" &> /dev/null
+}
+
 ## File aliases
 # Open The Linux Cmd Line by W. Stotts
 [[ -f  $HOME/Documents/CS/Books/TLCL-19.01.pdf ]] && \
@@ -30,7 +35,11 @@ export NVM_DIR="$HOME/.nvm"
 # FZF
 if cmd_exist fzf; then
     # Enable fzf keybindings for Bash:
-    . $HOME/.fzf.bash
+    if [[ "$(uname)" == Darwin ]]; then
+        . $HOME/.fzf.bash
+    elif [[ "$(uname)" == Linux ]]; then
+        . /usr/share/doc/fzf/examples/key-bindings.bash
+    fi
     # Custom fzf defaults
     export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'bat -n --color=always {}'"
     if cmd_exist fd; then

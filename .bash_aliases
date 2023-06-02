@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Check if a command exists
+cmd_exist () {
+    builtin type -P "$1" &> /dev/null
+}
+
 # Aliases
 # Enable alias expansion even when shell is non-interactive to access aliases across system
 shopt -s expand_aliases
@@ -46,7 +51,7 @@ alias .b='. ~/.bash_profile'
 alias v='vim'
 alias va='vim *'
 alias vvrc='vim ~/.vimrc'
-alias vbsh='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc ~/.inputrc'
+alias vbsh='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc ~/.inputrc ~/.dotfiles/install.sh'
 alias vbp='vim ~/.bash_profile'
 alias vbrc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'

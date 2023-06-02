@@ -27,7 +27,7 @@ set incsearch
 " Highlight the current line
 set cursorline
 " 2 lines above/below cursor when scrolling
-set scrolloff=2
+set scrolloff=0
 " Allow yy, etc. to interact with OS X clipboard
 set clipboard=unnamed
 " Set show matching parentheses
@@ -57,6 +57,11 @@ highlight Folded ctermfg=yellow ctermbg=NONE
  let mapleader = ","
 
 " NORMAL MODE ---------------------- 
+" Disable arrow keys to learn hjkl!!
+nnoremap <Left> <nop>
+nnoremap <Right> <nop>
+nnoremap <Up> <nop>
+nnoremap <Down> <nop>
 " Edit vimrc in vsplit pane
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " Source vimrc
@@ -64,25 +69,23 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 " Open NERDTree
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 " Open terminal at bottom with aliases
-nnoremap <leader>t :bo term<CR>. ~/.bash_aliases<CR>. ~/.bashrc<CR>
+nnoremap <leader>t :bo term<CR>. ~/.bashrc<CR>. ~/.bash_aliases<CR>
 " Don't let x and c spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
-" Easier to get command prompt
-nnoremap ; :
 " Toggle code folds
 nnoremap <space> za
 " Quick save
 nnoremap W :update<CR>
 " Save and close current buffer and then it
-nnoremap E :w\|bd<CR>
+nnoremap E :w <bar> bd<CR>
 " Quick quit
 nnoremap EE :wqa<CR>
 " Quick open bash dotfiles
 nnoremap <leader>vba :e ~/.bash_aliases<CR>
 nnoremap <leader>vbrc :e ~/.bashrc<CR>
 nnoremap <leader>vbp :e ~/.bash_profile<CR>
-nnoremap <leader>vbsh :e ~/.bash_profile<CR>:e ~/.bashrc<CR>:e ~/.bash_aliases<CR>
+nnoremap <leader>vbsh :e ~/.bash_profile <bar> :e ~/.bashrc <bar> :e ~/.bash_aliases <bar> :e ~/.vimrc <bar> :e ~/.inputrc <bar> :e ~/.dotfiles/install.sh <CR>
 " Cycle buffers
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
@@ -102,12 +105,16 @@ inoremap <C-p> <C-r>0
 " Jump forward/backword word
 inoremap <leader><Left> <Esc>bi
 inoremap <leader><Right> <Esc>wi
+
 " VISUAL MODE ---------------------- 
 " Easier Esc
 vnoremap jk <Esc>
-" Easier to get command prompt
-vnoremap ; :
 vnoremap <leader><space> <plug>NERDCommenterInvert
+
+" COMMAND MODE ---------------------- 
+" Easier Esc
+cnoremap jk <Esc>
+
 "}}}
 
 " ABBREVIATIONS ---------------------- {{{
@@ -178,6 +185,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Fugitive (Git visualizer)
 Plug 'tpope/vim-fugitive'
+" Surround text with quotes, brackets, tags, etc.
+Plug 'tpope/vim-surround'
 " Gruvbox colortheme
 Plug 'morhetz/gruvbox'
 

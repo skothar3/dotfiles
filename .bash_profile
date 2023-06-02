@@ -34,14 +34,10 @@ pathprepend() {
 [[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion
 
 # Load rbenv to manage Ruby versions on startup
-if cmd_exist rbenv; then
-    eval "$(rbenv init -)"
-fi
+[[ $(cmd_exist rbenv) ]] && eval "$(rbenv init -)"
 
 # Export home directory for Java Tomcat
-if cmd_exist catalina; then
-    export CATALINA_HOME=/usr/local/Cellar/tomcat/10.1.8/libexec
-fi
+[[  $(cmd_exist catalina) ]] && export CATALINA_HOME=/usr/local/Cellar/tomcat/10.1.8/libexec
 
 # Add $HOME/bin to path
 pathprepend "$HOME/bin"
