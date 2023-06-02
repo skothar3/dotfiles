@@ -43,8 +43,11 @@ pathprepend() {
 pathprepend "$HOME/bin"
 
 # Change prompt to host and working directory
-# export PS1="\e[1;32m\u@\h\e[97m:\e[34m\W\e[0;97m \$ "
-export PS1="\u@\h:\W \$ "
+if [[ $(uname) == Linux ]]; then
+    export PS1="\e[1;32m\u@\h\e[97m:\e[34m\W\e[0;97m \$ "
+else
+    export PS1="\u@\h:\W \$ "
+fi
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
