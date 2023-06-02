@@ -30,7 +30,7 @@ if cmd_exist rg; then
     alias grep='rg'
 fi
 if [[ $(uname) == Linux ]]; then
-    if cmd exist fdfind; then
+    if cmd_exist fdfind; then
         alias fd='fdfind'
     fi
     if cmd_exist batcat; then
@@ -107,28 +107,33 @@ alias dccd='docker compose down'
 
 # Kubernetes{{{
 if cmd_exist kubectl; then
-        # Set up autocompletion and shortcut
-        source <(kubectl completion bash)
-        alias k='kubectl'
-        alias kg='kubectl get'
-        alias kgp='kubectl get pods'
-        alias kgn='kubectl get nodes'
-        alias kgsvc='kubectl get svc'
-        alias kd='kubectl describe'
-        alias kdp='kubectl describe pods'
-        alias kdn='kubectl describe nodes'
-        alias kdsvc='kubectl describe svc'
-        alias ka='kubectl apply'
-        alias kaf='kubectl apply -f'
-        alias krm='kubectl delete'
-        alias krmp='kubectl delete pods'
-        alias krmn='kubectl delete nodes'
-        alias krmsvc='kubectl delete svc'
-        alias dry='--dry-run=client -o yaml'
-        complete -o default -F __start_kubectl k
+    # Set up autocompletion and shortcut
+    source <(kubectl completion bash)
+    alias k='kubectl'
+    alias kg='kubectl get'
+    alias kgp='kubectl get pods'
+    alias kgn='kubectl get nodes'
+    alias kgsvc='kubectl get svc'
+    alias kd='kubectl describe'
+    alias kdp='kubectl describe pods'
+    alias kdn='kubectl describe nodes'
+    alias kdsvc='kubectl describe svc'
+    alias ka='kubectl apply'
+    alias kaf='kubectl apply -f'
+    alias krm='kubectl delete'
+    alias krmp='kubectl delete pods'
+    alias krmn='kubectl delete nodes'
+    alias krmsvc='kubectl delete svc'
+    alias dry='--dry-run=client -o yaml'
+    complete -o default -F __start_kubectl k
 fi
 # }}}
 
 # Multipass{{{
 alias m='multipass'
+alias ml='multipass list'
+alias mst='multipass start'
+alias msp='multipass stop'
+alias md='multipass delete'
+alias mdp='multipass delete --purge'
 # }}}
