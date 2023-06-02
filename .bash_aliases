@@ -29,12 +29,19 @@ alias sudo='sudo '
 if cmd_exist rg; then
     alias grep='rg'
 fi
-if cmd_exist bat; then
-    alias cat='bat'
-    alias less='bat'
-fi
 if [[ $(uname) == Linux ]]; then
-    alias fd='fd-find'
+    if cmd exist fdfind; then
+        alias fd='fdfind'
+    fi
+    if cmd_exist batcat; then
+        alias cat='batcat'
+        alias less='batcat'
+    fi
+elif [[ $(uname) == Darwin ]]; then
+    if cmd_exist bat; then
+        alias cat='bat'
+        alias less='bat'
+    fi
 fi
 
 alias ..='cd ..'

@@ -18,7 +18,11 @@ alias vwv='open http://linuxcommand.org/lc3_adv_vimvigor.php'
 # Ignore duplicates in command history and increase
 # history size to 1000 lines
 export HISTCONTROL=ignoredups
-export HISTSIZE=1000
+export HISTSIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
 
 ## Docker Networking
 # Export docker host to Linux VM ubuntu@welcome-liger
@@ -35,16 +39,25 @@ export NVM_DIR="$HOME/.nvm"
 # FZF
 if cmd_exist fzf; then
     # Enable fzf keybindings for Bash:
-    if [[ "$(uname)" == Darwin ]]; then
+    if [[ "$(uname -v)" =~ Darwin ]]; then
         . $HOME/.fzf.bash
-    elif [[ "$(uname)" == Linux ]]; then
+
+        # Custom fzf defaults
+        export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'bat -n --color=always {}'"
+        if cmd_exist fd; then
+                export FZF_DEFAULT_COMMAND="fd . --hidden --follow --exclude '.git' --ignore-file $HOME/.ignore"
+                export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+        fi
+    elif [[ "$(uname -v)" =~ Ubuntu ]]; then
         . /usr/share/doc/fzf/examples/key-bindings.bash
+
+        # Custom fzf defaults
+        export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'batcat -n --color=always {}'"
+        if cmd_exist fdfind; then
+                export FZF_DEFAULT_COMMAND="fdfind . --hidden --follow --exclude '.git' --ignore-file $HOME/.ignore"
+                export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
+        fi
     fi
-    # Custom fzf defaults
-    export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'bat -n --color=always {}'"
-    if cmd_exist fd; then
-            export FZF_DEFAULT_COMMAND="fd . --hidden --follow --exclude '.git' --ignore-file $HOME/.ignore $HOME"
-            export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
-    fi
+    
     export FZF_COMPLETION_TRIGGER='--'
 fi
