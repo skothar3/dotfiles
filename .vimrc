@@ -33,7 +33,7 @@ set clipboard=unnamed
 " Set show matching parentheses
 set showmatch
 " Set relative line numbering
-set relativenumber
+set number
 " Indent highlighting
 set list lcs=tab:··\|,trail:·
 " Get aliases from bash dotfiles

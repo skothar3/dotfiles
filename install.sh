@@ -7,13 +7,22 @@
 # Array of dot files to source
 files=(.bash_aliases .bash_profile .bashrc .gitconfig .gitignore_global .inputrc .vimrc .vim)
 
-OLD_DOTFILES=$HOME/.olddotfiles
-DOTFILES=$HOME/.dotfiles
+# Define paths for dotfiles
+OLD_DOTFILES=$HOME/.olddotfiles/
+DOTFILES=$HOME/.dotfiles/
 
-[[ -e $DOTFILES ]] && rm -rf $DOTFILES
+echo -e "Checking paths to dotfiles...\n"
+# Get the current directory of install.sh
+curr_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-mv -v $HOME/dotfiles $DOTFILES
+# If the current directory is NOT already $DOTFILES, then clear $DOTFILES and move everything there
+if ! [[ $curr_dir =~ $DOTFILES ]]; then
+    rm -rf $DOTFILES && mv -v $curr_dir $DOTFILES
+fi
+
+# If $OLD_DOTFILES doesn't already exist, then create it
 [[ -d $OLD_DOTFILES ]] || mkdir -v $OLD_DOTFILES
+echo -e "Done...\n"
 
 # move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 echo -e "Moving any existing dotfiles from $HOME to $OLD_DOTFILES & creating symlinks to $DOTFILES...\n"
@@ -49,6 +58,7 @@ if [[ "$(uname -v)" =~ Ubuntu ]]; then
     pkgs=(ripgrep bat fzf fd-find)
     echo -e "Installing packages: "
     printf '%s\n' "${pkgs[@]}"
+
     echo $PW | sudo apt -y update
     echo $PW | sudo apt -y upgrade
     echo $PW | sudo apt install "${pkgs[@]}"
