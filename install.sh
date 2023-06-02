@@ -24,7 +24,7 @@ fi
 [[ -d $OLD_DOTFILES ]] || mkdir -v $OLD_DOTFILES
 echo -e "Done...\n"
 
-# move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
+# Move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
 echo -e "Moving any existing dotfiles from $HOME to $OLD_DOTFILES & creating symlinks to $DOTFILES...\n"
 for file in "${files[@]}"; do
     # If a same-named file already exists in $HOME:

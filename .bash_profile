@@ -46,7 +46,7 @@ pathprepend "$HOME/bin"
 if [[ "$(uname -v)" =~ Darwin ]]; then
     # [Green]User@Host[White]:[Red]WorkingDirectory[White]$
     export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;31m\]\W\[\033[00m\]\$ '
-elif [[ "$(uname -v)" =~ Ubuntu|Fedora ]]
+elif [[ "$(uname -v)" =~ Ubuntu|Fedora ]]; then
     # [Green]User@Host[White]:[Blue]WorkingDirectory[White]$
     export PS1='\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\W\[\033[00m\]\$ '
 fi

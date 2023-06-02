@@ -58,6 +58,5 @@ if cmd_exist fzf; then
                 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
         fi
     fi
-    
     export FZF_COMPLETION_TRIGGER='--'
 fi
