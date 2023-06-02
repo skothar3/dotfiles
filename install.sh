@@ -19,12 +19,10 @@ if [[ -e $DOTFILES ]]; then
     # If the current directory is NOT already $DOTFILES, then clear $DOTFILES and move everything there
     if ! [[ $curr_dir -ef $DOTFILES ]]; then
         rm -rfv $DOTFILES 
-        mkdir -v $DOTFILES
         mv -v $curr_dir $DOTFILES
     fi
 else
     # Make $DOTFILES and move everything there
-    mkdir -v $DOTFILES
     mv -v $curr_dir $DOTFILES
 fi
 
