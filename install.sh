@@ -8,17 +8,27 @@
 files=(.bash_aliases .bash_profile .bashrc .gitconfig .gitignore_global .inputrc .vimrc .vim)
 
 # Define paths for dotfiles
-OLD_DOTFILES=$HOME/.olddotfiles/
-DOTFILES=$HOME/.dotfiles/
+OLD_DOTFILES=$HOME/.olddotfiles
+DOTFILES=$HOME/.dotfiles
 
 echo -e "Checking paths to dotfiles...\n"
 # Get the current directory of install.sh
-curr_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
-# If the current directory is NOT already $DOTFILES, then clear $DOTFILES and move everything there
-if ! [[ $curr_dir =~ $DOTFILES ]]; then
-    rm -rf $DOTFILES && mv -v $curr_dir $DOTFILES
+
+if [[ -e $DOTFILES ]]; then
+    # If the current directory is NOT already $DOTFILES, then clear $DOTFILES and move everything there
+    curr_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+    if ! [[ $curr_dir -ef $DOTFILES ]]; then
+        rm -rfv $DOTFILES 
+        mkdir -v $DOTFILES
+        mv -v $curr_dir $DOTFILES
+    fi
+else
+    # Make $DOTFILES and move everything there
+    mkdir -v $DOTFILES
+    mv -v $curr_dir $DOTFILES
 fi
+
 
 # If $OLD_DOTFILES doesn't already exist, then create it
 [[ -d $OLD_DOTFILES ]] || mkdir -v $OLD_DOTFILES
