@@ -42,10 +42,11 @@ unset ssh_pubkey
 
 # Install necessary packages
 if [[ "$(uname)" == Linux ]]; then
-    pkgs=(bat fzf fdfind)
+    pkgs=(ripgrep bat fzf fd-find)
     echo -e "Installing packages: "
     printf '%s\n' "${pkgs[@]}"
     echo $PW | sudo apt -y update
+    echo $PW | sudo apt -y upgrade
     echo $PW | sudo apt install "${pkgs[@]}"
 fi
 

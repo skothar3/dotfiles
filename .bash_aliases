@@ -13,25 +13,28 @@ shopt -s expand_aliases
 
 # Create and change into directory
 mk() {
-	mkdir $1 && cd $1
+        mkdir $1 && cd $1
 }
 
 # Change into .dotfiles directory and commit changes
 updot() {
-	cd $HOME/.dotfiles;
-	git add . && git commit -m "$1" && git push origin main;
-	cd -
+        cd $HOME/.dotfiles;
+        git add . && git commit -m "$1" && git push origin main;
+        cd -
 }
 # }}}
 
 # Command line {{{
 alias sudo='sudo '
 if cmd_exist rg; then
-	alias grep='rg'
+    alias grep='rg'
 fi
 if cmd_exist bat; then
-	alias cat='bat'
-	alias less='bat'
+    alias cat='bat'
+    alias less='bat'
+fi
+if [[ $(uname) == Linux ]]; then
+    alias fd='fd-find'
 fi
 
 alias ..='cd ..'
@@ -59,7 +62,7 @@ alias vba='vim ~/.bash_aliases'
 
 # Git{{{
 gca() {
-	git add . && git commit -m "$1";
+        git add . && git commit -m "$1";
 }
 alias gc='git commit -m'
 alias gs='git status'
@@ -95,25 +98,25 @@ alias dccd='docker compose down'
 
 # Kubernetes{{{
 if cmd_exist kubectl; then
-	# Set up autocompletion and shortcut
-	source <(kubectl completion bash)
-	alias k='kubectl'
-	alias kg='kubectl get'
-	alias kgp='kubectl get pods'
-	alias kgn='kubectl get nodes'
-	alias kgsvc='kubectl get svc'
-	alias kd='kubectl describe'
-	alias kdp='kubectl describe pods'
-	alias kdn='kubectl describe nodes'
-	alias kdsvc='kubectl describe svc'
-	alias ka='kubectl apply'
-	alias kaf='kubectl apply -f'
-	alias krm='kubectl delete'
-	alias krmp='kubectl delete pods'
-	alias krmn='kubectl delete nodes'
-	alias krmsvc='kubectl delete svc'
-	alias dry='--dry-run=client -o yaml'
-	complete -o default -F __start_kubectl k
+        # Set up autocompletion and shortcut
+        source <(kubectl completion bash)
+        alias k='kubectl'
+        alias kg='kubectl get'
+        alias kgp='kubectl get pods'
+        alias kgn='kubectl get nodes'
+        alias kgsvc='kubectl get svc'
+        alias kd='kubectl describe'
+        alias kdp='kubectl describe pods'
+        alias kdn='kubectl describe nodes'
+        alias kdsvc='kubectl describe svc'
+        alias ka='kubectl apply'
+        alias kaf='kubectl apply -f'
+        alias krm='kubectl delete'
+        alias krmp='kubectl delete pods'
+        alias krmn='kubectl delete nodes'
+        alias krmsvc='kubectl delete svc'
+        alias dry='--dry-run=client -o yaml'
+        complete -o default -F __start_kubectl k
 fi
 # }}}
 
