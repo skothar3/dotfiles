@@ -52,13 +52,16 @@ echo -e "Configuring .ssh/ for future logins...\n"
 mkdir -p $HOME/.ssh/keys
 [[ -e $HOME/.ssh/config ]] || touch $HOME/.ssh/config
 [[ -e $HOME/.ssh/authorized_keys ]] || touch $HOME/.ssh/authorized_keys
-
-echo -e "Adding public key...\n"
-# Add my public key to trust future remote logins
-ssh_pubkey="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC/8++6ayyEShtB4BV6rXyMqOdFBYjcl/IVnaEy55Z4NGJ8COvRtIT998uTfB/QxxnR7toogIfalad2m7I9B4z4E9QValoQ/vJoEOY5ryeefMQDKHNMNKsavneNUkXun3f0R6COCDy9vRKV7NsqBqOcwLmmJyydFvMS3cEkfCnGYC8Hc+lb2dYYNe7ke6xzCrJLyTBuD4qtLoiaEoyMHO4Iq9tkwM4ubNbdDzDkto4dNBkVTlve+DtGLZiy9501/ylukFVRj6ZpzWJj3H/g+rSfJJdkp18RfBPi1xCWDbP2zg82ZIEx3gZ5S0vMds8f2jW8/pAty6pHxqHaTS9KQ+r8D7O7vZUg7ly5xDUiT1fdeAAd4tGvptiD5tsyEcHIX33/9mCCTDTZzgPdxcwWOBtsfeA4Y3JybnCKkFdHrFmt7r7DC8XmLELFtEspaTqNWA9wuWa9NEHOnVD7sEsRdGIyzVW9KJ7pdLmau3p6jK2wjBLD+DzqnugkUGKFSU9eSdTNk39CltpiFFrNb8t9AELu0EH+UkQihLO+zQXXJD+S4lS43M4obPY3cHapeDZXd5sTrcrH8PQNLwUfP4d2pO5vBJQ6iqp3F95YfQZcuCvhUfZH5tAwOK2A+YrYU3fGsL2rzKqgWy6PcPnPX4IkhaAJCDcuM0r14MRH2EcJxD9Suw== sid@home.local"
-echo $ssh_pubkey >> $HOME/.ssh/authorized_keys
-unset ssh_pubkey 
-echo -e "Done...\n"
+   
+ # Check for my public key
+if ! [[ $(cat $HOME/.ssh/authorized_keys) =~ sid@home ]]; then
+    echo -e "Attempting to add public key...\n"
+    # Add my public key to trust future remote logins
+    if [[ -f ./.public_key ]]; then
+        cat ./.public_key >> $HOME/.ssh/authorized_keys
+    fi
+    echo -e "Done...\n"
+fi
 
 # Install necessary packages
 if [[ "$(uname -v)" =~ Ubuntu ]]; then

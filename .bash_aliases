@@ -25,11 +25,10 @@ updot() {
 # }}}
 
 # Command line {{{
-alias sudo='sudo '
 if cmd_exist rg; then
     alias grep='rg'
 fi
-if [[ $(uname) == Linux ]]; then
+if [[ "$(uname -v)" =~ Ubuntu ]]; then
     if cmd_exist fdfind; then
         alias fd='fdfind'
     fi
@@ -37,7 +36,7 @@ if [[ $(uname) == Linux ]]; then
         alias cat='batcat'
         alias less='batcat'
     fi
-elif [[ $(uname) == Darwin ]]; then
+elif [[ "$(uname -v)" =~ Darwin ]]; then
     if cmd_exist bat; then
         alias cat='bat'
         alias less='bat'
@@ -61,7 +60,7 @@ alias .b='. ~/.bash_profile'
 alias v='vim'
 alias va='vim *'
 alias vvrc='vim ~/.vimrc'
-alias vbsh='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc ~/.inputrc ~/.dotfiles/install.sh'
+alias v.='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc ~/.inputrc ~/.dotfiles/install.sh'
 alias vbp='vim ~/.bash_profile'
 alias vbrc='vim ~/.bashrc'
 alias vba='vim ~/.bash_aliases'
@@ -77,8 +76,10 @@ alias ga='git add'
 alias gl='git log --pretty=oneline'
 alias gll='git log --pretty=format:"[%h] %ae, %ar: %s" --stat'
 alias gd='git diff --color-words'
+alias gf='git fetch'
 alias gp='git push'
 alias gpl='git pull'
+alias gfo='git fetch origin'
 alias gpo='git push origin'
 alias gplo='git pull origin'
 alias gra='git remote add'
