@@ -7,7 +7,7 @@ cmd_exist () {
 
 ## File aliases
 # Open The Linux Cmd Line by W. Stotts
-[[ -f  $HOME/Documents/CS/Books/TLCL-19.01.pdf ]] && \
+[[ -f "$HOME/Documents/CS/Books/TLCL-19.01.pdf" ]] && \
     alias tlcl="open $HOME/Documents/CS/Books/TLCL-19.01.pdf"
 
 # Open Vim reference page via browser
@@ -23,6 +23,9 @@ export HISTSIZE=2000
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
+
+# Enable alias expansion even when shell is non-interactive to access aliases across system
+shopt -s expand_aliases
 
 ## Docker Networking
 # Export docker host to Linux VM ubuntu@welcome-liger
@@ -40,7 +43,7 @@ export NVM_DIR="$HOME/.nvm"
 if cmd_exist fzf; then
     # Enable fzf keybindings for Bash:
     if [[ "$(uname -v)" =~ Darwin ]]; then
-        . $HOME/.fzf.bash
+        . "$HOME/.fzf.bash"
 
         # Custom fzf defaults
         export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'bat -n --color=always {}'"
@@ -49,7 +52,7 @@ if cmd_exist fzf; then
                 export FZF_CTRL_T_COMMAND=$FZF_DEFAULT_COMMAND
         fi
     elif [[ "$(uname -v)" =~ Ubuntu ]]; then
-        . /usr/share/doc/fzf/examples/key-bindings.bash
+        . "/usr/share/doc/fzf/examples/key-bindings.bash"
 
         # Custom fzf defaults
         export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'batcat -n --color=always {}'"

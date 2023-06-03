@@ -6,25 +6,13 @@ cmd_exist () {
 }
 
 # Aliases
-# Enable alias expansion even when shell is non-interactive to access aliases across system
-shopt -s expand_aliases
 
-# Functions{{{
-
+# Command line {{{
 # Create and change into directory
 mk() {
         mkdir $1 && cd $1
 }
 
-# Change into .dotfiles directory and commit changes
-updot() {
-        cd $HOME/.dotfiles;
-        git add . && git commit -m "$1" && git push origin main;
-        cd -
-}
-# }}}
-
-# Command line {{{
 if cmd_exist rg; then
     alias grep='rg'
 fi
@@ -67,6 +55,13 @@ alias vba='vim ~/.bash_aliases'
 # }}}
 
 # Git{{{
+# Change into .dotfiles directory and commit changes
+updot() {
+        cd "$HOME/.dotfiles";
+        git add . && git commit -m "$1" && git push origin main;
+        cd -
+}
+
 gca() {
         git add . && git commit -m "$1";
 }

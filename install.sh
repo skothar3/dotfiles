@@ -8,12 +8,12 @@
 files=(.bash_aliases .bash_profile .bashrc .gitconfig .gitignore_global .inputrc .vimrc .vim)
 
 # Define paths for dotfiles
-OLD_DOTFILES=$HOME/.olddotfiles
-DOTFILES=$HOME/.dotfiles
+OLD_DOTFILES="$HOME/.olddotfiles"
+DOTFILES="$HOME/.dotfiles"
 
 echo -e "\nChecking paths to dotfiles...\n"
-# Get the current directory of install.sh
-curr_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
+# Get the parent directory of install.sh
+curr_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 if [[ -e $DOTFILES ]]; then
     # If the current directory is NOT already $DOTFILES, then clear $DOTFILES and move everything there
@@ -37,28 +37,28 @@ for file in "${files[@]}"; do
     # If a same-named file already exists in $HOME:
     # 1. Remove it, if it is a symlink or 
     # 2. Move it, if it's an actual file
-    if [[ -h $HOME/$file ]]; then
-            rm -rf $HOME/$file
-    elif [[ -f $HOME/$file ]]; then
-            mv -v $HOME/$file $OLD_DOTFILES/$file
+    if [[ -h "$HOME/$file" ]]; then
+            rm -rfv "$HOME/$file"
+    elif [[ -f "$HOME/$file" ]]; then
+            mv -v "$HOME/$file" "$OLD_DOTFILES/$file"
     fi
     # Create a new symlink at $HOME to the dotfile
-    ln -snfv $DOTFILES/$file $HOME/$file
+    ln -snfv "$DOTFILES/$file" "$HOME/$file"
 done
 echo -e "Done...\n"
 
 # Some SSH configuration
 echo -e "Configuring .ssh/ for future logins...\n"
-mkdir -p $HOME/.ssh/keys
-[[ -e $HOME/.ssh/config ]] || touch $HOME/.ssh/config
-[[ -e $HOME/.ssh/authorized_keys ]] || touch $HOME/.ssh/authorized_keys
+[[ -d "$HOME/.ssh/keys" ]] || mkdir -p "$HOME/.ssh/keys"
+[[ -e "$HOME/.ssh/config" ]] || touch "$HOME/.ssh/config"
+[[ -e "$HOME/.ssh/authorized_keys" ]] || touch "$HOME/.ssh/authorized_keys"
    
  # Check for my public key
-if ! [[ $(cat $HOME/.ssh/authorized_keys) =~ sid@home ]]; then
+if ! [[ $(cat "$HOME/.ssh/authorized_keys") =~ sid@home ]]; then
     echo -e "Attempting to add public key...\n"
     # Add my public key to trust future remote logins
-    if [[ -f ./.public_key ]]; then
-        cat ./.public_key >> $HOME/.ssh/authorized_keys
+    if [[ -f "$DOTFILES/.public_key" ]]; then
+        cat "$DOTFILES/.public_key" >> "$HOME/.ssh/authorized_keys"
     fi
     echo -e "Done...\n"
 fi
@@ -77,14 +77,14 @@ fi
 
 
 echo -e "Installing vim plugins...\n"
-vim -es -u $HOME/.vimrc -i NONE -c "PlugInstall" -c "qa"
+vim -es -u "$HOME/.vimrc" -i NONE -c "PlugInstall" -c "qa"
 
 # Symlink vim colorscheme after gruvbox plugin is installed
 echo -e "Linking gruvbox colorscheme...\n"
-ln -snfv $HOME/.vim/plugged/gruvbox/colors/gruvbox.vim $HOME/.vim/colors/gruvbox.vim
+ln -snfv "$HOME/.vim/plugged/gruvbox/colors/gruvbox.vim" "$HOME/.vim/colors/gruvbox.vim"
 echo -e "Done...\n"
 
 echo -e "\nSourcing $HOME/.bash_profile...\n"
-. $HOME/.bash_profile
+. "$HOME/.bash_profile"
 
 echo -e "Finished!\n"

@@ -25,19 +25,19 @@ pathprepend() {
 }
 
 # Include .bashrc
-[[ -f $HOME/.bashrc ]] && . $HOME/.bashrc
+[[ -f "$HOME/.bashrc" ]] && . "$HOME/.bashrc"
 
 # Include bash aliases
-[[ -f $HOME/.bash_aliases ]] && . $HOME/.bash_aliases
+[[ -f "$HOME/.bash_aliases" ]] && . "$HOME/.bash_aliases"
 
 # Include bash autocompletion
-[[ -f /usr/local/etc/bash_completion ]] && . /usr/local/etc/bash_completion
+[[ -f "/usr/local/etc/bash_completion" ]] && . "/usr/local/etc/bash_completion"
 
 # Load rbenv to manage Ruby versions on startup
 [[ $(cmd_exist rbenv) ]] && eval "$(rbenv init -)"
 
 # Export home directory for Java Tomcat
-[[  $(cmd_exist catalina) ]] && export CATALINA_HOME=/usr/local/Cellar/tomcat/10.1.8/libexec
+[[  $(cmd_exist catalina) ]] && export CATALINA_HOME="/usr/local/Cellar/tomcat/10.1.8/libexec"
 
 # Add $HOME/bin to path
 pathprepend "$HOME/bin"
