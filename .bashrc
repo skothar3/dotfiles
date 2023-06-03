@@ -43,7 +43,7 @@ export NVM_DIR="$HOME/.nvm"
 if cmd_exist fzf; then
     # Enable fzf keybindings for Bash:
     if [[ "$(uname -v)" =~ Darwin ]]; then
-        . "$HOME/.fzf.bash"
+        . "/usr/local/opt/fzf/shell/key-bindings.bash"
 
         # Custom fzf defaults
         export FZF_DEFAULT_OPTS="--height 60% --layout=reverse --border --preview 'bat -n --color=always {}'"

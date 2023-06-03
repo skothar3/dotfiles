@@ -37,7 +37,7 @@ for file in "${files[@]}"; do
     # If a same-named file already exists in $HOME:
     # 1. Remove it, if it is a symlink or 
     # 2. Move it, if it's an actual file
-    if [[ -h "$HOME/$file" ]]; then
+    if [[ -L "$HOME/$file" ]]; then
             rm -rfv "$HOME/$file"
     elif [[ -f "$HOME/$file" ]]; then
             mv -v "$HOME/$file" "$OLD_DOTFILES/$file"
@@ -54,7 +54,7 @@ echo -e "Configuring .ssh/ for future logins...\n"
 [[ -e "$HOME/.ssh/authorized_keys" ]] || touch "$HOME/.ssh/authorized_keys"
    
  # Check for my public key
-if ! [[ $(cat "$HOME/.ssh/authorized_keys") =~ sid@home ]]; then
+ if ! grep -wq "sid@home" "$HOME/.ssh/authorized_keys"; then
     echo -e "Attempting to add public key...\n"
     # Add my public key to trust future remote logins
     if [[ -f "$DOTFILES/.public_key" ]]; then
