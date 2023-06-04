@@ -2,8 +2,8 @@
 set editing-mode vi
 # Display vi-mode in prompt
 set show-mode-in-prompt on
-set vi-ins-mode-string "(I) "
-set vi-cmd-mode-string "(C) "
+set vi-ins-mode-string "I "
+set vi-cmd-mode-string "C "
 
 # Be more intelligent when autocompleting by also looking at the text after
 # the cursor. For example, when the current line is "cd ~/src/mozil", and
@@ -24,7 +24,7 @@ set completion-ignore-case on
 
 ## Bindings for tab completion (equivalent to "bind '"xx": function' via terminal)
 # If there are multiple matches for completion, Tab should cycle through them
-# TAB:menu-complete
+TAB:menu-complete
 # And Shift-Tab should cycle backwards
 "\e[Z": menu-complete-backward
 # Cycle through history based on characters already typed on the line
