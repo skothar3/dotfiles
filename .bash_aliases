@@ -46,12 +46,12 @@ alias .b='. ~/.bash_profile'
 
 # Vim{{{
 alias v='vim'
-alias va='vim *'
-alias vvrc='vim ~/.vimrc'
-alias v.='vim ~/.bash_profile ~/.bashrc ~/.bash_aliases ~/.vimrc ~/.inputrc ~/.dotfiles/install.sh'
-alias vbp='vim ~/.bash_profile'
-alias vbrc='vim ~/.bashrc'
-alias vba='vim ~/.bash_aliases'
+alias v*='vim *'
+alias vvrc='vim ~/.dotfiles/.vimrc'
+alias v.='vim ~/..dotfiles/bash_profile ~/.dotfiles/.bashrc ~/.dotfiles/.bash_aliases ~/.dotfiles/.vimrc ~/.dotfiles/.inputrc ~/.dotfiles/install.sh'
+alias vbp='vim ~/.dotfiles/.bash_profile'
+alias vbrc='vim ~/.dotfiles/.bashrc'
+alias vba='vim ~/.dotfiles/.bash_aliases'
 # }}}
 
 # Git{{{
