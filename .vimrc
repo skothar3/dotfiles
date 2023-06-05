@@ -134,7 +134,8 @@ let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'html':['eslint'],
 \   'css':['stylelint'],
-\   'ruby': ['rubocop']
+\   'ruby': ['rubocop'],
+\   'sh': ['shellcheck']
 \}
 
 " Fixing configuration
@@ -147,6 +148,8 @@ let g:ale_fixers = {
 \}
 
 " Format configuration
+let g:ale_lint_on_enter = 1
+let g:ale_lint_on_insert_leave = 1
 let g:ale_linters_explicit = 1
 let g:ale_completion_enabled = 1
 let g:ale_sign_column_always = 1

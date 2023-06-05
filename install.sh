@@ -31,18 +31,18 @@ fi
 [[ -d $OLD_DOTFILES ]] || mkdir -v $OLD_DOTFILES
 echo -e "Done...\n"
 
-# Move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks
+# Move any existing dotfiles in $HOME to $OLD_DOTFILES, then create new symlinks from $HOME to $DOTFILES
 echo -e "Moving any existing dotfiles from $HOME to $OLD_DOTFILES & creating symlinks to $DOTFILES...\n"
 for file in "${files[@]}"; do
     # If a same-named file already exists in $HOME:
     # 1. Remove it, if it is a symlink or 
-    # 2. Move it, if it's an actual file
+    # 2. Move it, if it's anything else
     if [[ -L "$HOME/$file" ]]; then
             rm -rfv "$HOME/$file"
-    elif [[ -f "$HOME/$file" ]]; then
+    elif [[ -e "$HOME/$file" ]]; then
             mv -v "$HOME/$file" "$OLD_DOTFILES/$file"
     fi
-    # Create a new symlink at $HOME to the dotfile
+    # Create a new symlink at $HOME to $file
     ln -snfv "$DOTFILES/$file" "$HOME/$file"
 done
 echo -e "Done...\n"
@@ -66,9 +66,10 @@ fi
 # Install necessary packages
 if [[ "$(uname -v)" =~ Ubuntu ]]; then
     pkgs=(ripgrep bat fzf fd-find)
-    echo -e "Installing packages: "
+    echo -e "Installing packages:\n"
     printf '%s\n' "${pkgs[@]}"
 
+    # Passes $PW obtained at start into each sudo call
     echo $PW | sudo apt -y update
     echo $PW | sudo apt -y upgrade
     echo $PW | sudo apt install "${pkgs[@]}"
@@ -77,6 +78,7 @@ fi
 
 
 echo -e "Installing vim plugins...\n"
+# Vim ex mode and silent mode, load my .vimrc, execute PlugInstall from vim-plug, and then quit
 vim -es -u "$HOME/.vimrc" -i NONE -c "PlugInstall" -c "qa"
 
 # Symlink vim colorscheme after gruvbox plugin is installed
