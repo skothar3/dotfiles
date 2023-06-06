@@ -1,6 +1,11 @@
 #!/usr/bin/bash
 # Source as . $HOME/dotfiles/install.sh
 
+# Make sure errors are caught
+set -o errexit
+set -o nounset
+set -o pipefail
+
 # Get sudo password for Linux package manager commands
 [[ "$(uname -v)" =~ Ubuntu ]] && read -sp 'Enter the sudo password: ' PW
 
