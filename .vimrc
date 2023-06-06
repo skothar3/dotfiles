@@ -144,7 +144,8 @@ let g:ale_fixers = {
 \   'javascript': ['prettier', 'eslint'],
 \   'html': ['prettier', 'eslint'],
 \   'css': ['prettier', 'stylelint'],
-\   'ruby': ['rubocop']
+\   'ruby': ['rubocop'],
+\   'sh': ['shfmt']
 \}
 
 " Format configuration
