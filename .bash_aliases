@@ -10,7 +10,7 @@ cmd_exist () {
 # Command line {{{
 # Create and change into directory
 mk() {
-        mkdir $1 && cd $1
+    mkdir $1 && cd $1
 }
 
 if cmd_exist rg; then
@@ -46,7 +46,7 @@ alias .b='. ~/.bash_profile'
 
 # Vim{{{
 alias v='vim'
-alias v*='vim *'
+alias v\*='vim *'
 alias vvrc='vim ~/.dotfiles/.vimrc'
 alias v.='vim ~/.dotfiles/.bash_profile ~/.dotfiles/.bashrc ~/.dotfiles/.bash_aliases ~/.dotfiles/.vimrc ~/.dotfiles/.inputrc ~/.dotfiles/install.sh'
 alias vbp='vim ~/.dotfiles/.bash_profile'
@@ -57,13 +57,13 @@ alias vba='vim ~/.dotfiles/.bash_aliases'
 # Git{{{
 # Change into .dotfiles directory and commit changes
 updot() {
-        cd "$HOME/.dotfiles";
-        git add . && git commit -m "$1" && git push origin main;
-        cd -
+    cd "$HOME/.dotfiles" || return;
+    git add . && git commit -m "$1" && git push origin main;
+    cd -
 }
 
 gca() {
-        git add . && git commit -m "$1";
+    git add . && git commit -m "$1";
 }
 alias gc='git commit -m'
 alias gs='git status'
