@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/bash
 # Source as . $HOME/dotfiles/install.sh
 
 # Get sudo password for Linux package manager commands
