@@ -55,3 +55,7 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && . "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Setting PATH for Python 3.12
+# The original version is saved in .bash_profile.pysave
+pathprepend "/Library/Frameworks/Python.framework/Versions/3.12/bin"
