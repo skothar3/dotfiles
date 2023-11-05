@@ -17,6 +17,7 @@ OLD_DOTFILES="$HOME/.olddotfiles"
 DOTFILES="$HOME/.dotfiles"
 
 echo -e "\nChecking paths to dotfiles...\n"
+
 # Get the parent directory of install.sh
 curr_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
@@ -58,11 +59,11 @@ echo -e "Configuring .ssh/ for future logins...\n"
 [[ -e "$HOME/.ssh/authorized_keys" ]] || touch "$HOME/.ssh/authorized_keys"
 
 # Check for my public key
-if ! grep -wq "sid@home" "$HOME/.ssh/authorized_keys"; then
+if ! grep -wq "sko" "$HOME/.ssh/authorized_keys"; then
     echo -e "Attempting to add public key...\n"
     # Add my public key to trust future remote logins
-    if [[ -f "$DOTFILES/.public_key" ]]; then
-        cat "$DOTFILES/.public_key" >>"$HOME/.ssh/authorized_keys"
+    if [[ -f "$DOTFILES/id_rsa.pub" ]]; then
+        cat "$DOTFILES/id_rsa.pub" >>"$HOME/.ssh/authorized_keys"
     fi
     echo -e "Done...\n"
 fi
@@ -74,9 +75,9 @@ if [[ "$(uname -v)" =~ Ubuntu ]]; then
     printf '%s\n' "${pkgs[@]}"
 
     # Passes $PW obtained at start into each sudo call
-    echo $PW | sudo apt -y update
-    echo $PW | sudo apt -y upgrade
-    echo $PW | sudo apt install "${pkgs[@]}"
+    echo "$PW" | sudo apt -y update
+    echo "$PW" | sudo apt -y upgrade
+    echo "$PW" | sudo apt install "${pkgs[@]}"
     echo -e "Done...\n"
 fi
 

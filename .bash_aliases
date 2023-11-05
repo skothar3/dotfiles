@@ -131,7 +131,8 @@ fi
 
 # Multipass{{{
 alias m='multipass'
-alias ml='multipass list'
+alias ml='multipass launch'
+alias mll='multipass list'
 alias mst='multipass start'
 alias msp='multipass stop'
 alias md='multipass delete'
