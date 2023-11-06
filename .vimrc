@@ -131,9 +131,9 @@ iabbrev ssig ----------------------<CR>
 " Linting configuration
 let g:ale_linters = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['eslint'],
-\   'html':['eslint'],
 \   'css':['stylelint'],
+\   'html':['eslint'],
+\   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
 \   'sh': ['shellcheck']
 \}
@@ -141,9 +141,9 @@ let g:ale_linters = {
 " Fixing configuration
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
-\   'javascript': ['prettier', 'eslint'],
-\   'html': ['prettier', 'eslint'],
 \   'css': ['prettier', 'stylelint'],
+\   'html': ['prettier', 'eslint'],
+\   'javascript': ['prettier', 'eslint'],
 \   'ruby': ['rubocop'],
 \   'sh': ['shfmt']
 \}
