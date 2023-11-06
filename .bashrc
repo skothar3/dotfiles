@@ -5,6 +5,11 @@ cmd_exist () {
     builtin type -P "$1" &> /dev/null
 }
 
+## AWS
+# Enable cli completion
+complete -C '/usr/local/bin/aws_completer' aws
+
+
 ## File aliases
 # Open The Linux Cmd Line by W. Stotts
 [[ -f "$HOME/Documents/CS/Books/TLCL-19.01.pdf" ]] && \
