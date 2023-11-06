@@ -7,7 +7,7 @@ cmd_exist () {
 
 ## AWS
 # Enable cli completion
-complete -C '/usr/local/bin/aws_completer' aws
+[[ -s "/usr/local/bin/aws_completer" ]] && complete -C '/usr/local/bin/aws_completer' aws
 
 
 ## File aliases
