@@ -83,7 +83,7 @@ if [[ "$(uname -v)" =~ "Ubuntu" ]]; then
     pkgman="apt"
 elif [[ "$(uname -v)" =~ "Fedora" ]]; then
     pkgman="dnf"
-elif [[ "$(uname -v)" != "Darwin" ]]; then
+elif [[ "$(uname -v)" =~ "Darwin" ]]; then
     pkgman="brew"
 fi
 
