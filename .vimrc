@@ -33,7 +33,7 @@ set clipboard=unnamed
 " Set show matching parentheses
 set showmatch
 " Set relative line numbering
-set number
+set relativenumber
 " Indent highlighting
 set list lcs=tab:··\|,trail:·
 " Get aliases from bash dotfiles
@@ -73,6 +73,9 @@ nnoremap <leader>t :bo term<CR>. ~/.bashrc<CR>. ~/.bash_aliases<CR>
 " Don't let x and c spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
+" Esc from Insert mode after adding newlines
+nnoremap o o<Esc>
+nnoremap O O<Esc>
 " Toggle code folds
 nnoremap <space> za
 " Quick save
@@ -85,7 +88,7 @@ nnoremap EE :wqa<CR>
 nnoremap <leader>vba :e ~/.bash_aliases<CR>
 nnoremap <leader>vbrc :e ~/.bashrc<CR>
 nnoremap <leader>vbp :e ~/.bash_profile<CR>
-nnoremap <leader>vbsh :e ~/.bash_profile <bar> :e ~/.bashrc <bar> :e ~/.bash_aliases <bar> :e ~/.vimrc <bar> :e ~/.inputrc <bar> :e ~/.dotfiles/install.sh <CR>
+nnoremap <leader>v. :e ~/.bash_profile <bar> :e ~/.bashrc <bar> :e ~/.bash_aliases <bar> :e ~/.vimrc <bar> :e ~/.inputrc <bar> :e ~/.dotfiles/install.sh <CR>
 " Cycle buffers
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
