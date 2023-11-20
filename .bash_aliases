@@ -57,9 +57,15 @@ alias vba='vim ~/.dotfiles/.bash_aliases'
 # Git{{{
 # Change into .dotfiles directory and commit changes
 updot() {
-    cd "$HOME/.dotfiles" || return;
+    if [[ $# -lt 1 ]]; then
+        printf "%s\n\n" "This function commits and pushes all changes made to the ~/.dotfiles repo"
+        printf "%s\n" "Usage: updot \"commit message\"";
+        return 1
+    fi
+
+    cd "$HOME/.dotfiles" || echo "No ~/.dotfiles directory found" && return 1;
     git add . && git commit -m "$1" && git push origin main;
-    cd -
+    cd - || return 1;
 }
 
 gca() {
