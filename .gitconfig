@@ -13,3 +13,5 @@
 	defaultBranch = main
 [alias]
 
+[pull]
+	rebase = false
