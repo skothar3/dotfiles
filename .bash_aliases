@@ -63,7 +63,7 @@ updot() {
         return 1
     fi
 
-    cd "$HOME/.dotfiles" || echo "No ~/.dotfiles directory found" && return 1;
+    cd "$HOME/.dotfiles" || { echo "No ~/.dotfiles directory found" && return 1; };
     git add . && git commit -m "$1" && git push origin main;
     cd - || return 1;
 }

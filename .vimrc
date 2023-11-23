@@ -54,7 +54,7 @@ highlight Folded ctermfg=yellow ctermbg=NONE
 " KEY MAPPINGS ---------------------- {{{
 
 " Map the leader key to a spacebar.
- let mapleader = ","
+let mapleader = ","
 
 " NORMAL MODE ---------------------- 
 " Disable arrow keys to learn hjkl!!
@@ -105,9 +105,9 @@ inoremap [ []<Left>
 inoremap { {}<Left>
 " Paste in insert mode
 inoremap <C-p> <C-r>0
-" Jump forward/backword word
-inoremap <leader><Left> <Esc>bi
-inoremap <leader><Right> <Esc>wi
+" Jump backword/forward word
+inoremap <leader>h <Esc>bi
+inoremap <leader>l <Esc>wi
 
 " VISUAL MODE ---------------------- 
 " Easier Esc
@@ -167,6 +167,12 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+"}}}
+
+" EMMET ---- -------------------- {{{
+
+" Change default leader key from <C-y>
+let g:user_emmet_leader_key = '.'
 "}}}
 
 " NERDCOMMENTER ---------------------- {{{
