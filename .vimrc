@@ -4,6 +4,8 @@ set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+" Allow backspace to delete characters previously inserted
+set backspace=start
 " Allow filetype recognition by Vim
 filetype on
 " Allow custom filetype plugins
@@ -34,15 +36,14 @@ set clipboard=unnamed
 set showmatch
 " Set relative line numbering
 set relativenumber
+" Open new vsplit windows to the right
+set splitright
 " Indent highlighting
 set list lcs=tab:··\|,trail:·
 " Get aliases from bash dotfiles
 let $BASH_ENV = "~/.bash_aliases"
 " Set syntax highlighting
 syntax on
-" Set colorscheme
-" colorscheme molokai
-colorscheme gruvbox
 " Enable mouse functionality
 if has('mouse')
   set mouse=a
@@ -70,6 +71,8 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 nnoremap <silent> <leader>n :NERDTreeToggle<CR>
 " Open terminal at bottom with aliases
 nnoremap <leader>t :bo term<CR>. ~/.bashrc<CR>. ~/.bash_aliases<CR>
+" Yank until end of line
+nnoremap Y y$
 " Don't let x and c spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
@@ -103,6 +106,9 @@ inoremap <Esc> <nop>
 inoremap ( ()<Left>
 inoremap [ []<Left>
 inoremap { {}<Left>
+" Quicker quotes
+inoremap " ""<Left>
+inoremap ' ''<Left>
 " Paste in insert mode
 inoremap <C-p> <C-r>0
 " Jump backword/forward word
@@ -128,7 +134,37 @@ iabbrev ssig ----------------------<CR>
 	    \----------------------
 "}}}
 
+" PACKAGES --------------------- {{{
+" Add matchit.vim to runtimepath and enable it
+" This package allows "%" to match HTML/XML tags
+packadd! matchit
+"}}}
+
 " PLUGINS ---------------------- {{{
+
+" VIM-PLUG ---------------------- {{{
+call plug#begin('~/.vim/plugged')
+
+" Nerdtree
+Plug 'preservim/nerdtree'
+" Nerdcommenter
+Plug 'preservim/nerdcommenter'
+" ALE
+Plug 'dense-analysis/ale'
+" Emmet
+Plug 'mattn/emmet-vim'
+" Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+" Fugitive (Git visualizer)
+Plug 'tpope/vim-fugitive'
+" Surround text with quotes, brackets, tags, etc.
+Plug 'tpope/vim-surround'
+" Colorthemes
+Plug 'morhetz/gruvbox'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+call plug#end()
+" }}}
 
 " ALE ---------------------- {{{
 " Linting configuration
@@ -167,6 +203,13 @@ let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline_theme="catppuccin"
+"}}}
+
+" COLORSCHEMES ----------------- {{{
+" colorscheme molokai
+" colorscheme gruvbox
+colorscheme catppuccin-mocha
 "}}}
 
 " EMMET ---- -------------------- {{{
@@ -182,27 +225,4 @@ let g:NERDSpaceDelims = 1
 let g:NERDCommentEmptyLines = 1
 "}}}
 
-" VIM-PLUG ---------------------- {{{
-call plug#begin('~/.vim/plugged')
-
-" Nerdtree
-Plug 'preservim/nerdtree'
-" Nerdcommenter
-Plug 'preservim/nerdcommenter'
-" ALE
-Plug 'dense-analysis/ale'
-" Emmet
-Plug 'mattn/emmet-vim'
-" Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" Fugitive (Git visualizer)
-Plug 'tpope/vim-fugitive'
-" Surround text with quotes, brackets, tags, etc.
-Plug 'tpope/vim-surround'
-" Gruvbox colortheme
-Plug 'morhetz/gruvbox'
-
-call plug#end()
-" }}}
 "}}}
