@@ -101,9 +101,9 @@ echo -e "Done...\n"
 echo -e "Installing vim plugins...\n"
 
 # Symlink vim colorscheme after gruvbox plugin is installed
-echo -e "Linking gruvbox colorscheme...\n"
-ln -snfv "$HOME/.vim/plugged/gruvbox/colors/gruvbox.vim" "$HOME/.vim/colors/gruvbox.vim"
-echo -e "Done...\n"
+# echo -e "Linking vim colorschemes...\n"
+# ln -snfv "$HOME/.vim/plugged/gruvbox/colors/gruvbox.vim" "$HOME/.vim/colors/gruvbox.vim"
+# echo -e "Done...\n"
 
 echo -e "\nSourcing $HOME/.bash_profile...\n"
 . "$HOME/.bash_profile"
