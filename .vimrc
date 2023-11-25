@@ -82,7 +82,7 @@ nnoremap O O<Esc>
 " Toggle code folds
 nnoremap <space> za
 " Quick save
-nnoremap W :update<CR>
+nnoremap S :update<CR>
 " Save and close current buffer and then it
 nnoremap E :w <bar> bd<CR>
 " Quick quit
