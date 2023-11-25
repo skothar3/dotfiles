@@ -100,15 +100,16 @@ echo -e "Done...\n"
 
 echo -e "Installing vim plugins...\n"
 
+# Vim ex mode and silent mode, load my .vimrc, execute PlugInstall from vim-plug, and then quit
+vim -es -u "$HOME/.vimrc" -i NONE -c "PlugInstall" -c "qa"
+
 # Symlink vim colorscheme after gruvbox plugin is installed
 # echo -e "Linking vim colorschemes...\n"
 # ln -snfv "$HOME/.vim/plugged/gruvbox/colors/gruvbox.vim" "$HOME/.vim/colors/gruvbox.vim"
-# echo -e "Done...\n"
+echo -e "Done...\n"
 
 echo -e "\nSourcing $HOME/.bash_profile...\n"
 . "$HOME/.bash_profile"
 
-# Vim ex mode and silent mode, load my .vimrc, execute PlugInstall from vim-plug, and then quit
-vim -es -u "$HOME/.vimrc" -i NONE -c "PlugInstall" -c "qa"
 
 echo -e "Finished!\n"
