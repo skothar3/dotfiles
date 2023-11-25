@@ -82,11 +82,11 @@ nnoremap O O<Esc>
 " Toggle code folds
 nnoremap <space> za
 " Quick save
-nnoremap S :update<CR>
+nnoremap E :update<CR>
 " Save and close current buffer and then it
-nnoremap E :w <bar> bd<CR>
+nnoremap EE :w <bar> bd<CR>
 " Quick quit
-nnoremap EE :wqa<CR>
+nnoremap EEE :wqa<CR>
 " Quick open bash dotfiles
 nnoremap <leader>vba :e ~/.bash_aliases<CR>
 nnoremap <leader>vbrc :e ~/.bashrc<CR>
