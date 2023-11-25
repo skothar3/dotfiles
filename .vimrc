@@ -4,6 +4,8 @@ set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set expandtab
+" Remember undo after quitting
+set hidden
 " Allow backspace to delete characters previously inserted
 set backspace=start
 " Allow filetype recognition by Vim
@@ -14,8 +16,6 @@ filetype plugin on
 set path+=**
 " File autocompletion menu
 set wildmenu
-" Number of nested folds to display
-set foldcolumn=2
 " Use default {{{}}} for folds
 set foldmethod=marker
 " Hide mode from statusbar
