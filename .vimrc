@@ -16,7 +16,7 @@ filetype plugin on
 set path+=**
 " File autocompletion menu
 set wildmenu
-" Use default {{{}}} for folds
+" Use default brackets for folds
 set foldmethod=marker
 " Hide mode from statusbar
 set noshowmode
@@ -82,11 +82,11 @@ nnoremap O O<Esc>
 " Toggle code folds
 nnoremap <space> za
 " Quick save
-nnoremap E :update<CR>
+nnoremap S :update<CR>
 " Save and close current buffer and then it
-nnoremap EE :w <bar> bd<CR>
+nnoremap E :w <bar> bd<CR>
 " Quick quit
-nnoremap EEE :wqa<CR>
+nnoremap EE :wqa<CR>
 " Quick open bash dotfiles
 nnoremap <leader>vba :e ~/.bash_aliases<CR>
 nnoremap <leader>vbrc :e ~/.bashrc<CR>
