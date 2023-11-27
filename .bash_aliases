@@ -44,14 +44,23 @@ alias ll.='ls -ldFG .*'
 alias .b='. ~/.bash_profile'
 # }}}
 
-# Vim{{{
-alias v='vim'
-alias v\*='vim *'
-alias vvrc='vim ~/.dotfiles/.vimrc'
-alias v.='vim ~/.dotfiles/.bash_profile ~/.dotfiles/.bashrc ~/.dotfiles/.bash_aliases ~/.dotfiles/.vimrc ~/.dotfiles/.inputrc ~/.dotfiles/install.sh'
-alias vbp='vim ~/.dotfiles/.bash_profile'
-alias vbrc='vim ~/.dotfiles/.bashrc'
-alias vba='vim ~/.dotfiles/.bash_aliases'
+# Docker{{{
+alias d='docker'
+alias dps='docker ps'
+alias di='docker image'
+alias dils='docker image ls'
+alias dc='docker container'
+alias dcls='docker container ls'
+alias dcr='docker container run'
+alias drm='docker rm'
+alias dn='docker network'
+alias dnls='docker network ls'
+alias dv='docker volume'
+alias dvls='docker volume ls'
+alias dcc='docker compose'
+alias dccu='docker compose up'
+alias dccud='docker compose up -d'
+alias dccd='docker compose down'
 # }}}
 
 # Git{{{
@@ -92,25 +101,6 @@ alias gcl='git clone'
 alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 # }}}
 
-# Docker{{{
-alias d='docker'
-alias dps='docker ps'
-alias di='docker image'
-alias dils='docker image ls'
-alias dc='docker container'
-alias dcls='docker container ls'
-alias dcr='docker container run'
-alias drm='docker rm'
-alias dn='docker network'
-alias dnls='docker network ls'
-alias dv='docker volume'
-alias dvls='docker volume ls'
-alias dcc='docker compose'
-alias dccu='docker compose up'
-alias dccud='docker compose up -d'
-alias dccd='docker compose down'
-# }}}
-
 # Kubernetes{{{
 if cmd_exist kubectl; then
     # Set up autocompletion and shortcut
@@ -144,3 +134,17 @@ alias msp='multipass stop'
 alias md='multipass delete'
 alias mdp='multipass delete --purge'
 # }}}
+
+# Vim{{{
+alias v='vim'
+alias v\*='vim *'
+alias vvrc='vim ~/.dotfiles/.vimrc'
+alias v.='vim ~/.dotfiles/.bash_profile ~/.dotfiles/.bashrc ~/.dotfiles/.bash_aliases ~/.dotfiles/.vimrc ~/.dotfiles/.inputrc ~/.dotfiles/install.sh'
+alias vbp='vim ~/.dotfiles/.bash_profile'
+alias vbrc='vim ~/.dotfiles/.bashrc'
+alias vba='vim ~/.dotfiles/.bash_aliases'
+# }}}
+
+
+
+
