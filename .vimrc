@@ -18,6 +18,8 @@ set path+=**
 set wildmenu
 " Use default brackets for folds
 set foldmethod=marker
+" Highlight code folds 
+highlight Folded ctermfg=yellow ctermbg=NONE
 " Hide mode from statusbar
 set noshowmode
 " Background color
@@ -31,7 +33,7 @@ set cursorline
 " 2 lines above/below cursor when scrolling
 set scrolloff=0
 " Allow yy, etc. to interact with OS X clipboard
-set clipboard=unnamed
+" set clipboard=unnamed
 " Set show matching parentheses
 set showmatch
 " Set relative line numbering
@@ -48,8 +50,6 @@ syntax on
 if has('mouse')
   set mouse=a
 endif
-" Highlight code folds 
-highlight Folded ctermfg=yellow ctermbg=NONE
 "}}}
 
 " KEY MAPPINGS ---------------------- {{{
@@ -76,6 +76,8 @@ nnoremap Y y$
 " Don't let x and c spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
+" Select pasted text
+nnoremap gp `[v`]
 " Esc from Insert mode after adding newlines
 nnoremap o o<Esc>
 nnoremap O O<Esc>
