@@ -6,6 +6,12 @@ cmd_exist () {
 }
 
 # Aliases
+# AWS{{{
+alias ae="aws ec2 "
+alias aec="aws ec2 create-"
+alias aed="aws ec2 describe-"
+alias ae="aws ec2 get-"
+# }}}
 
 # Command line {{{
 # Create and change into directory
