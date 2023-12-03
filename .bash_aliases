@@ -10,7 +10,8 @@ cmd_exist () {
 alias ae="aws ec2 "
 alias aec="aws ec2 create-"
 alias aed="aws ec2 describe-"
-alias ae="aws ec2 get-"
+alias aeg="aws ec2 get-"
+alias asl="aws sso login"
 # }}}
 
 # Command line {{{
