@@ -3,11 +3,11 @@
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
-set expandtab
+set noexpandtab
 " Remember undo after quitting
 set hidden
 " Allow backspace to delete characters previously inserted
-set backspace=start
+set backspace=eol,start,indent
 " Allow filetype recognition by Vim
 filetype on
 " Allow custom filetype plugins
@@ -79,8 +79,8 @@ nnoremap c "_c
 " Select pasted text
 nnoremap gp `[v`]
 " Esc from Insert mode after adding newlines
-nnoremap o o<Esc>
-nnoremap O O<Esc>
+" nnoremap o o<Esc>
+" nnoremap O O<Esc>
 " Toggle code folds
 nnoremap <space> za
 " Quick save
