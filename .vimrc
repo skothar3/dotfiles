@@ -52,7 +52,7 @@ if has('mouse')
 endif
 "}}}
 
-" KEY MAPPINGS ---------------------- {{{
+ " KEY MAPPINGS ------- --------------- {{{
 
 " Map the leader key to a spacebar.
 let mapleader = ","
@@ -79,8 +79,10 @@ nnoremap c "_c
 " Select pasted text
 nnoremap gp `[v`]
 " Esc from Insert mode after adding newlines
-" nnoremap o o<Esc>
-" nnoremap O O<Esc>
+nnoremap <CR> o<Esc>
+
+nnoremap <S-CR> O<Esc>
+
 " Toggle code folds
 nnoremap <space> za
 " Quick save
@@ -105,9 +107,9 @@ nnoremap <leader><space> <plug>NERDCommenterInvert
 inoremap jk <Esc>l
 inoremap <Esc> <nop>
 " Quicker brackets
-inoremap ( ()<Left>
-inoremap [ []<Left>
-inoremap { {}<Left>
+" inoremap ( ()<Left>
+" inoremap [ []<Left>
+" inoremap { {}<Left>
 " Quicker quotes
 inoremap " ""<Left>
 inoremap ' ''<Left>
@@ -136,7 +138,18 @@ iabbrev ssig ----------------------<CR>
 	    \----------------------
 "}}}
 
-" PACKAGES --------------------- {{{
+" Autocommands
+augroup vimrc
+  " Remove all existing vimrc autocommands
+  autocmd!
+  " Write buffer after exiting insert mode
+  autocmd InsertLeave * :update
+  " Exit insert mode if no key press after 'updatetime'miliseconds
+  autocmd CursorHoldI * :stopinsert
+  
+augroup END
+  
+  " PACKAGES --------------------- {{{
 " Add matchit.vim to runtimepath and enable it
 " This package allows "%" to match HTML/XML tags
 packadd! matchit
@@ -162,6 +175,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-fugitive'
 " Surround text with quotes, brackets, tags, etc.
 Plug 'tpope/vim-surround'
+" Auto-pairs and auto-indentation for brackets
+Plug 'jiangmiao/auto-pairs'
 " Colorthemes
 Plug 'morhetz/gruvbox'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
