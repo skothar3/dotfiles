@@ -1,13 +1,16 @@
-" BASIC SETTINGS ---------------------- {{{
+" BASIC SETTINGS {{{
 " Set up indentation
 set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set noexpandtab
+" Set the miliseconds before CursorHold times out (used with CursorHoldI in
+" autocommand section)
+set updatetime=10000
 " Remember undo after quitting
 set hidden
 " Allow backspace to delete characters previously inserted
-set backspace=eol,start,indent
+set backspace=start,indent
 " Allow filetype recognition by Vim
 filetype on
 " Allow custom filetype plugins
@@ -36,8 +39,8 @@ set scrolloff=0
 " set clipboard=unnamed
 " Set show matching parentheses
 set showmatch
-" Set relative line numbering
-set relativenumber
+" Set hybrid (absolute + relative) line numbering
+set number relativenumber
 " Open new vsplit windows to the right
 set splitright
 " Indent highlighting
@@ -52,9 +55,9 @@ if has('mouse')
 endif
 "}}}
 
- " KEY MAPPINGS ------- --------------- {{{
+ " KEY MAPPINGS {{{
 
-" Map the leader key to a spacebar.
+" Map the leader key to comma
 let mapleader = ","
 
 " NORMAL MODE ---------------------- 
@@ -80,17 +83,17 @@ nnoremap c "_c
 nnoremap gp `[v`]
 " Esc from Insert mode after adding newlines
 nnoremap <CR> o<Esc>
-
-nnoremap <S-CR> O<Esc>
-
 " Toggle code folds
 nnoremap <space> za
 " Quick save
 nnoremap S :update<CR>
-" Save and close current buffer and then it
+" Save and close current buffer
 nnoremap E :w <bar> bd<CR>
 " Quick quit
 nnoremap EE :wqa<CR>
+" Turn off relativenumbers before entering command line (used in conjunction
+" with CmdlineLeave autocommand to revert after leaving command line)
+nnoremap : :setlocal number norelativenumber<CR>:
 " Quick open bash dotfiles
 nnoremap <leader>vba :e ~/.bash_aliases<CR>
 nnoremap <leader>vbrc :e ~/.bashrc<CR>
@@ -115,9 +118,6 @@ inoremap " ""<Left>
 inoremap ' ''<Left>
 " Paste in insert mode
 inoremap <C-p> <C-r>0
-" Jump backword/forward word
-inoremap <leader>h <Esc>bi
-inoremap <leader>l <Esc>wi
 
 " VISUAL MODE ---------------------- 
 " Easier Esc
@@ -130,7 +130,7 @@ cnoremap jk <Esc>
 
 "}}}
 
-" ABBREVIATIONS ---------------------- {{{
+" ABBREVIATIONS {{{
 iabbrev @@ sid.kothari7@gmail.com
 iabbrev ssig ----------------------<CR>
 	    \Sid Kothari<CR>
@@ -138,24 +138,30 @@ iabbrev ssig ----------------------<CR>
 	    \----------------------
 "}}}
 
-" Autocommands
+" AUTOCOMMANDS {{{
 augroup vimrc
   " Remove all existing vimrc autocommands
   autocmd!
-  " Write buffer after exiting insert mode
+  " Write buffer after exiting Insert mode
   autocmd InsertLeave * :update
-  " Exit insert mode if no key press after 'updatetime'miliseconds
+  " Exit Insert mode if no key press after 'updatetime'miliseconds
   autocmd CursorHoldI * :stopinsert
-  
+  " Turn on relativenumbers when leaving command line
+  autocmd CmdlineLeave * :setlocal number relativenumber
+  " Turn off relativenumbers when leaving window
+  autocmd WinLeave,FocusLost * :setlocal number norelativenumber
+ " Turn on relativenumbers when entering window
+  autocmd WinEnter,FocusGained * :setlocal number relativenumber
 augroup END
+"}}}
   
-  " PACKAGES --------------------- {{{
+  " PACKAGES {{{
 " Add matchit.vim to runtimepath and enable it
 " This package allows "%" to match HTML/XML tags
 packadd! matchit
 "}}}
 
-" PLUGINS ---------------------- {{{
+" PLUGINS {{{
 
 " VIM-PLUG ---------------------- {{{
 call plug#begin('~/.vim/plugged')
