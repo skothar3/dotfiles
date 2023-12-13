@@ -128,6 +128,27 @@ vnoremap <leader><space> <plug>NERDCommenterInvert
 " Easier Esc
 cnoremap jk <Esc>
 
+" MOVEMENT OPERATORS ---------------------- 
+" Select inside next brackets
+onoremap in( :<C-U>normal! f(vi(<CR>
+" Select inside last brackets
+onoremap il( :<C-U>normal! F)vi(<CR>
+" Select inside next square brackets
+onoremap in[ :<C-U>normal! f[vi[<CR>
+" Select inside last square brackets
+onoremap il[ :<C-U>normal! F]vi[<CR>
+" Select inside next curly brackets
+onoremap in{ :<C-U>normal! f{vi{<CR>
+" Select inside last curly brackets
+onoremap il{ :<C-U>normal! F}vi{<CR>
+" Select inside next double quotes
+onoremap in" :<C-U>normal! f"vi"<CR>
+" Select inside last double quotes
+onoremap il" :<C-U>normal! F"vi"<CR>
+" Select inside next single quotes
+onoremap in' :<C-U>normal! f'vi'<CR>
+" Select inside last single quotes
+onoremap il' :<C-U>normal! F'vi'<CR>
 "}}}
 
 " ABBREVIATIONS {{{
@@ -194,7 +215,7 @@ call plug#end()
 let g:ale_linters = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'css':['stylelint'],
-\   'html':['eslint'],
+\   'html':['htmlhint', 'eslint'],
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
 \   'sh': ['shellcheck']
