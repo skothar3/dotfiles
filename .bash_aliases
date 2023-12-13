@@ -150,6 +150,7 @@ alias v.='vim ~/.dotfiles/.bash_profile ~/.dotfiles/.bashrc ~/.dotfiles/.bash_al
 alias vbp='vim ~/.dotfiles/.bash_profile'
 alias vbrc='vim ~/.dotfiles/.bashrc'
 alias vba='vim ~/.dotfiles/.bash_aliases'
+alias vft='vim ~/.vim/ftplugin/*'
 # }}}
 
 
