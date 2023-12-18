@@ -23,4 +23,5 @@ tags
 [._]*.un~
 
 # Node modules 
+.eslintrc.json
 **/node_modules/
