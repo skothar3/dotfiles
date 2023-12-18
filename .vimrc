@@ -66,12 +66,13 @@ nnoremap <Left> <nop>
 nnoremap <Right> <nop>
 nnoremap <Up> <nop>
 nnoremap <Down> <nop>
+" More convenient jump to first non-blank character on line
+nnoremap 0 ^
+nnoremap ^ 0
 " Edit vimrc in vsplit pane
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " Source vimrc
-nnoremap <leader>sv :source $MYVIMRC<CR>
-" Open NERDTree
-nnoremap <silent> <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>.v :source $MYVIMRC<CR>
 " Open terminal at bottom with aliases
 nnoremap <leader>t :bo term<CR>. ~/.bashrc<CR>. ~/.bash_aliases<CR>
 " Yank until end of line
@@ -81,8 +82,6 @@ nnoremap x "_x
 nnoremap c "_c
 " Select pasted text
 nnoremap gp `[v`]
-" Esc from Insert mode after adding newlines
-nnoremap <CR> o<Esc>
 " Toggle code folds
 nnoremap <space> za
 " Quick save
@@ -100,8 +99,8 @@ nnoremap <leader>vbrc :e ~/.bashrc<CR>
 nnoremap <leader>vbp :e ~/.bash_profile<CR>
 nnoremap <leader>v. :e ~/.bash_profile <bar> :e ~/.bashrc <bar> :e ~/.bash_aliases <bar> :e ~/.vimrc <bar> :e ~/.inputrc <bar> :e ~/.dotfiles/install.sh <CR>
 " Cycle buffers
-nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
+" nnoremap <Tab> :bn<CR>
+" nnoremap <S-Tab> :bp<CR>
 " Remap NERDCommenter comment invert
 nnoremap <leader><space> <plug>NERDCommenterInvert
 
@@ -117,12 +116,17 @@ inoremap <Esc> <nop>
 inoremap " ""<Left>
 inoremap ' ''<Left>
 " Paste in insert mode
-inoremap <C-p> <C-r>0
+inoremap <C-v> <C-r>"
 
 " VISUAL MODE ---------------------- 
 " Easier Esc
 vnoremap jk <Esc>
+" Bulk comment toggle
 vnoremap <leader><space> <plug>NERDCommenterInvert
+" Quickly move selected text into global search and replace
+vnoremap <leader>sg y:%s/<C-r>"//g<Left><Left>
+" Quickly move selected text into global search and replace with confirm
+vnoremap <leader>sc y:%s/<C-r>"//c<Left><Left>
 
 " COMMAND MODE ---------------------- 
 " Easier Esc
@@ -187,8 +191,6 @@ packadd! matchit
 " VIM-PLUG ---------------------- {{{
 call plug#begin('~/.vim/plugged')
 
-" Nerdtree
-Plug 'preservim/nerdtree'
 " Nerdcommenter
 Plug 'preservim/nerdcommenter'
 " ALE
@@ -198,12 +200,16 @@ Plug 'mattn/emmet-vim'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Unimpaired bracket mappings
+Plug 'tpope/vim-unimpaired'
 " Fugitive (Git visualizer)
 Plug 'tpope/vim-fugitive'
 " Surround text with quotes, brackets, tags, etc.
 Plug 'tpope/vim-surround'
 " Auto-pairs and auto-indentation for brackets
 Plug 'jiangmiao/auto-pairs'
+" Code completion engine
+Plug 'ycm-core/YouCompleteMe'
 " Colorthemes
 Plug 'morhetz/gruvbox'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
@@ -215,7 +221,7 @@ call plug#end()
 let g:ale_linters = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'css':['stylelint'],
-\   'html':['htmlhint', 'eslint'],
+\   'html':[''],
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
 \   'sh': ['shellcheck']
@@ -225,7 +231,7 @@ let g:ale_linters = {
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'css': ['prettier', 'stylelint'],
-\   'html': ['prettier', 'eslint'],
+\   'html': ['prettier'],
 \   'javascript': ['prettier', 'eslint'],
 \   'ruby': ['rubocop'],
 \   'sh': ['shfmt']
