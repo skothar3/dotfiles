@@ -74,7 +74,7 @@ alias dccd='docker compose down'
 # Change into .dotfiles directory and commit changes
 updot() {
     if [[ $# -lt 1 ]]; then
-        printf "%s\n\n" "This function commits and pushes all changes made to the ~/.dotfiles repo"
+        printf "%s\n\n" "This function adds, commits, and pushes all changes made to the ~/.dotfiles repo"
         printf "%s\n" "Usage: updot \"commit message\"";
         return 1
     fi
@@ -87,25 +87,28 @@ updot() {
 gca() {
     git add . && git commit -m "$1";
 }
-alias gc='git commit -m'
-alias gs='git status'
 alias ga='git add'
+alias gb='git branch'
+alias gc='git commit -m'
+alias gcb='git checkout -b'
+alias gco='git checkout'
+alias gcl='git clone'
+alias gd='git diff --color-words'
+alias gdm='git diff --color-words main'
+alias gf='git fetch'
+alias gfo='git fetch origin'
+alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
 alias gl='git log --pretty=oneline'
 alias gll='git log --pretty=format:"[%h] %ae, %ar: %s" --stat'
-alias gd='git diff --color-words'
-alias gf='git fetch'
-alias gp='git push'
-alias gpl='git pull'
-alias gfo='git fetch origin'
-alias gpo='git push origin'
-alias gplo='git pull origin'
-alias gra='git remote add'
-alias gb='git branch'
-alias gco='git checkout'
-alias gcb='git checkout -b'
 alias gm='git merge'
-alias gcl='git clone'
-alias gg='git log --oneline --abbrev-commit --all --graph --decorate --color'
+alias gmm='git merge main'
+alias gpl='git pull'
+alias gplo='git pull origin'
+alias gp='git push'
+alias gpo='git push origin'
+alias gpom='git push origin main'
+alias gra='git remote add'
+alias gs='git status'
 # }}}
 
 # Kubernetes{{{

@@ -133,6 +133,8 @@ vnoremap <leader>sc y:%s/<C-r>"//c<Left><Left>
 " COMMAND MODE ---------------------- 
 " Easier Esc
 cnoremap jk <Esc>
+" Easier fzf command
+cnoremap fzf FZF
 
 " MOVEMENT OPERATORS ---------------------- 
 " Select inside next brackets
@@ -212,6 +214,8 @@ Plug 'tpope/vim-surround'
 Plug 'jiangmiao/auto-pairs'
 " Code completion engine
 Plug 'ycm-core/YouCompleteMe'
+" FZF plugin for Vim
+Plug 'junegunn/fzf'
 " Colorthemes
 Plug 'morhetz/gruvbox'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
