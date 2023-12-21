@@ -12,6 +12,6 @@ let g:html_indent_inctags = "p"
 augroup html
     autocmd!
     " Reindent file before reading and writing
-    autocmd BufWritePre,BufRead *.html :normal gg=G
+    " autocmd BufWritePre,BufRead *.html :normal gg=G
 
 augroup END
