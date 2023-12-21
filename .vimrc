@@ -4,6 +4,8 @@ set tabstop=8
 set softtabstop=4
 set shiftwidth=4
 set noexpandtab
+" Disable preview window during code completion
+set completeopt-=preview
 " Set the miliseconds before CursorHold times out (used with CursorHoldI in
 " autocommand section)
 set updatetime=10000
@@ -87,9 +89,9 @@ nnoremap <space> za
 " Quick save
 nnoremap S :update<CR>
 " Save and close current buffer
-nnoremap E :w <bar> bd<CR>
+nnoremap Q :w <bar> bd<CR>
 " Quick quit
-nnoremap EE :wqa<CR>
+nnoremap QQ :wqa<CR>
 " Turn off relativenumbers before entering command line (used in conjunction
 " with CmdlineLeave autocommand to revert after leaving command line)
 nnoremap : :setlocal number norelativenumber<CR>:
@@ -99,8 +101,8 @@ nnoremap <leader>vbrc :e ~/.bashrc<CR>
 nnoremap <leader>vbp :e ~/.bash_profile<CR>
 nnoremap <leader>v. :e ~/.bash_profile <bar> :e ~/.bashrc <bar> :e ~/.bash_aliases <bar> :e ~/.vimrc <bar> :e ~/.inputrc <bar> :e ~/.dotfiles/install.sh <CR>
 " Cycle buffers
-" nnoremap <Tab> :bn<CR>
-" nnoremap <S-Tab> :bp<CR>
+nnoremap <Tab> :bn<CR>
+nnoremap <S-Tab> :bp<CR>
 " Remap NERDCommenter comment invert
 nnoremap <leader><space> <plug>NERDCommenterInvert
 
@@ -221,7 +223,7 @@ call plug#end()
 let g:ale_linters = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'css':['stylelint'],
-\   'html':[''],
+\   'html':['htmlhint'],
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
 \   'sh': ['shellcheck']
