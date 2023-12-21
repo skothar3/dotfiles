@@ -24,4 +24,5 @@ tags
 
 # Node modules 
 .eslintrc.json
+jsconfig.json
 **/node_modules/
