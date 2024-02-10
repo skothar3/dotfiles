@@ -6,13 +6,18 @@ set shiftwidth=4
 set noexpandtab
 " Disable preview window during code completion
 set completeopt-=preview
+" Display as much of last (bottom) line that fits on the screen, instead of
+" the default @ symbols
+set display=lastline
+" Disable spellchecking
+set nospell
 " Set the miliseconds before CursorHold times out (used with CursorHoldI in
 " autocommand section)
 set updatetime=10000
 " Remember undo after quitting
 set hidden
 " Allow backspace to delete characters previously inserted
-set backspace=start,indent
+set backspace=start,indent,eol
 " Allow filetype recognition by Vim
 filetype on
 " Allow custom filetype plugins
@@ -71,6 +76,8 @@ nnoremap <Down> <nop>
 " More convenient jump to first non-blank character on line
 nnoremap 0 ^
 nnoremap ^ 0
+" Jump to interior of next tag
+nnoremap <leader>> /<\w\+.*><CR>%l
 " Edit vimrc in vsplit pane
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " Source vimrc
@@ -82,6 +89,9 @@ nnoremap Y y$
 " Don't let x and c spoil the yank register
 nnoremap x "_x
 nnoremap c "_c
+" More convenient marks
+nnoremap ' `
+nnoremap ' `
 " Select pasted text
 nnoremap gp `[v`]
 " Toggle code folds
@@ -96,15 +106,28 @@ nnoremap QQ :wqa<CR>
 " with CmdlineLeave autocommand to revert after leaving command line)
 nnoremap : :setlocal number norelativenumber<CR>:
 " Quick open bash dotfiles
-nnoremap <leader>vba :e ~/.bash_aliases<CR>
-nnoremap <leader>vbrc :e ~/.bashrc<CR>
-nnoremap <leader>vbp :e ~/.bash_profile<CR>
+" nnoremap <leader>vba :e ~/.bash_aliases<CR>
+" nnoremap <leader>vbrc :e ~/.bashrc<CR>
+" nnoremap <leader>vbp :e ~/.bash_profile<CR>
 nnoremap <leader>v. :e ~/.bash_profile <bar> :e ~/.bashrc <bar> :e ~/.bash_aliases <bar> :e ~/.vimrc <bar> :e ~/.inputrc <bar> :e ~/.dotfiles/install.sh <CR>
 " Cycle buffers
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
+" Shortcut to access window functions (cycling, resizing etc.)
+nnoremap ; <C-w>
+nnoremap ;; <C-w>w
+" Shortcut for ALEFix command
+nnoremap <leader>af <Plug>(ale_fix)
+" Jump to next ALE error/warning
+nnoremap <C-j> <Plug>(ale_next_wrap)
+" Jump to previous ALE error/warning
+nnoremap <C-k> <Plug>(ale_previous_wrap)
 " Remap NERDCommenter comment invert
-nnoremap <leader><space> <plug>NERDCommenterInvert
+nnoremap <leader><space> <Plug>NERDCommenterInvert
+" Insert comment above current line
+nnoremap <leader>O O<Esc><Plug>NERDCommenterComment A
+" Insert comment below current line
+nnoremap <leader>o o<Esc><Plug>NERDCommenterComment A
 
 " INSERT MODE ---------------------- 
 " Escape to normal mode and stay in place
@@ -128,19 +151,25 @@ vnoremap <leader><space> <plug>NERDCommenterInvert
 " Quickly move selected text into global search and replace
 vnoremap <leader>sg y:%s/<C-r>"//g<Left><Left>
 " Quickly move selected text into global search and replace with confirm
-vnoremap <leader>sc y:%s/<C-r>"//c<Left><Left>
+vnoremap <leader>sc y:%s/<C-r>"//gc<Left><Left><Left>
 
 " COMMAND MODE ---------------------- 
 " Easier Esc
 cnoremap jk <Esc>
 " Easier fzf command
 cnoremap fzf FZF
+" Shortcut to search files starting at the home directory
+cnoremap ff FZF ~<CR>
 
 " MOVEMENT OPERATORS ---------------------- 
 " Select inside next brackets
 onoremap in( :<C-U>normal! f(vi(<CR>
 " Select inside last brackets
 onoremap il( :<C-U>normal! F)vi(<CR>
+" Select inside next tag
+onoremap int :<C-U>normal! f<vit<CR>
+" Select inside last tag
+onoremap ilt :<C-U>normal! F>vit<CR>
 " Select inside next square brackets
 onoremap in[ :<C-U>normal! f[vi[<CR>
 " Select inside last square brackets
@@ -157,6 +186,10 @@ onoremap il" :<C-U>normal! F"vi"<CR>
 onoremap in' :<C-U>normal! f'vi'<CR>
 " Select inside last single quotes
 onoremap il' :<C-U>normal! F'vi'<CR>
+" Select inside next back ticks
+onoremap in` :<C-U>normal! f`vi`<CR>
+" Select inside last single quotes
+onoremap il` :<C-U>normal! F`vi`<CR>
 "}}}
 
 " ABBREVIATIONS {{{
@@ -172,9 +205,11 @@ augroup vimrc
   " Remove all existing vimrc autocommands
   autocmd!
   " Write buffer after exiting Insert mode
+" Disable newline o and O from becoming comment lines
+  autocmd FileType * set formatoptions-=o
   autocmd InsertLeave * :update
   " Exit Insert mode if no key press after 'updatetime'miliseconds
-  autocmd CursorHoldI * :stopinsert
+  " autocmd CursorHoldI * :stopinsert
   " Turn on relativenumbers when leaving command line
   autocmd CmdlineLeave * :setlocal number relativenumber
   " Turn off relativenumbers when leaving window
@@ -208,6 +243,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tpope/vim-unimpaired'
 " Fugitive (Git visualizer)
 Plug 'tpope/vim-fugitive'
+" Enable plugin-map repeats using '.'
+Plug 'tpope/vim-repeat'
 " Surround text with quotes, brackets, tags, etc.
 Plug 'tpope/vim-surround'
 " Auto-pairs and auto-indentation for brackets
@@ -216,6 +253,10 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'ycm-core/YouCompleteMe'
 " FZF plugin for Vim
 Plug 'junegunn/fzf'
+" Enhanced syntax highlighting and folding for Javascript
+Plug 'jelera/vim-javascript-syntax'
+" Notmuch email client for vim
+Plug 'felipec/notmuch-vim'
 " Colorthemes
 Plug 'morhetz/gruvbox'
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
@@ -245,17 +286,22 @@ let g:ale_fixers = {
 
 " Format configuration
 let g:ale_lint_on_enter = 1
+let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_linters_explicit = 1
 let g:ale_completion_enabled = 1
-let g:ale_sign_column_always = 1
+" let g:ale_sign_column_always = 1
 
+let g:ale_virtualtext_cursor = 'current'
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+highlight ALEWarning ctermbg=DarkBlue
+highlight ALEError ctermbg=DarkMagenta
 "}}}
 
 " AIRLINE ---------------------- {{{
+let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#buffer_nr_show = 1
@@ -269,9 +315,12 @@ colorscheme catppuccin-mocha
 "}}}
 
 " EMMET ---- -------------------- {{{
-
-" Change default leader key from <C-y>
+" Run Emmet only for HTML & CSS
+let g:user_emmet_install_global = 0
+" Change default Emmet leader key from <C-y>
 let g:user_emmet_leader_key = '.'
+
+autocmd FileType html,css EmmetInstall
 "}}}
 
 " NERDCOMMENTER ---------------------- {{{

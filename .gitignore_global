@@ -25,4 +25,5 @@ tags
 # Node modules 
 .eslintrc.json
 jsconfig.json
+.stylelintrc.json
 **/node_modules/
