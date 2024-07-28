@@ -83,7 +83,7 @@ nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 " Source vimrc
 nnoremap <leader>.v :source $MYVIMRC<CR>
 " Open terminal at bottom with aliases
-nnoremap <leader>t :bo term<CR>. ~/.bashrc<CR>. ~/.bash_aliases<CR>
+nnoremap <leader>t :bo term ++rows=7<CR>. ~/.bashrc<CR>. ~/.bash_aliases<CR>
 " Yank until end of line
 nnoremap Y y$
 " Don't let x and c spoil the yank register
@@ -102,6 +102,8 @@ nnoremap S :update<CR>
 nnoremap Q :w <bar> bd<CR>
 " Quick quit
 nnoremap QQ :wqa<CR>
+" Quick search and replace from " register
+nnoremap <leader>sg :<C-U>%s/<C-R>"//g<Left><Left>
 " Turn off relativenumbers before entering command line (used in conjunction
 " with CmdlineLeave autocommand to revert after leaving command line)
 nnoremap : :setlocal number norelativenumber<CR>:
@@ -118,6 +120,8 @@ nnoremap ; <C-w>
 nnoremap ;; <C-w>w
 " Shortcut for ALEFix command
 nnoremap <leader>af <Plug>(ale_fix)
+" Shortcut for ALELint command
+nnoremap <leader>al <Plug>(ale_lint)
 " Jump to next ALE error/warning
 nnoremap <C-j> <Plug>(ale_next_wrap)
 " Jump to previous ALE error/warning
@@ -156,6 +160,7 @@ vnoremap <leader>sc y:%s/<C-r>"//gc<Left><Left><Left>
 " COMMAND MODE ---------------------- 
 " Easier Esc
 cnoremap jk <Esc>
+cnoremap Bd bp\|bd #
 " Easier fzf command
 cnoremap fzf FZF
 " Shortcut to search files starting at the home directory
@@ -166,6 +171,10 @@ cnoremap ff FZF ~<CR>
 onoremap in( :<C-U>normal! f(vi(<CR>
 " Select inside last brackets
 onoremap il( :<C-U>normal! F)vi(<CR>
+" Select inside next brackets
+onoremap inb :<C-U>normal! f(vi(<CR>
+" Select inside last brackets
+onoremap ilb :<C-U>normal! F)vi(<CR>
 " Select inside next tag
 onoremap int :<C-U>normal! f<vit<CR>
 " Select inside last tag
@@ -178,6 +187,10 @@ onoremap il[ :<C-U>normal! F]vi[<CR>
 onoremap in{ :<C-U>normal! f{vi{<CR>
 " Select inside last curly brackets
 onoremap il{ :<C-U>normal! F}vi{<CR>
+" Select inside next curly brackets
+onoremap inB :<C-U>normal! f{vi{<CR>
+" Select inside last curly brackets
+onoremap ilB :<C-U>normal! F}vi{<CR>
 " Select inside next double quotes
 onoremap in" :<C-U>normal! f"vi"<CR>
 " Select inside last double quotes
@@ -190,6 +203,10 @@ onoremap il' :<C-U>normal! F'vi'<CR>
 onoremap in` :<C-U>normal! f`vi`<CR>
 " Select inside last single quotes
 onoremap il` :<C-U>normal! F`vi`<CR>
+"}}}
+
+" COMMANDS {{{
+" command Bd bp\|bd \#
 "}}}
 
 " ABBREVIATIONS {{{
@@ -270,6 +287,7 @@ let g:ale_linters = {
 \   'css':['stylelint'],
 \   'html':['htmlhint'],
 \   'javascript': ['eslint'],
+\   'python': ['pylint'],
 \   'ruby': ['rubocop'],
 \   'sh': ['shellcheck']
 \}
@@ -280,6 +298,7 @@ let g:ale_fixers = {
 \   'css': ['prettier', 'stylelint'],
 \   'html': ['prettier'],
 \   'javascript': ['prettier', 'eslint'],
+\   'python': ['black'],
 \   'ruby': ['rubocop'],
 \   'sh': ['shfmt']
 \}
