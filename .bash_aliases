@@ -89,7 +89,9 @@ gca() {
 }
 alias ga='git add'
 alias gb='git branch'
+alias gbd='git branch -d'
 alias gc='git commit -m'
+alias gcam='git commit --amend'
 alias gcb='git checkout -b'
 alias gco='git checkout'
 alias gcom='git checkout main'
@@ -111,6 +113,8 @@ alias gpom='git push origin main'
 alias grb='git rebase -i'
 alias gra='git remote add'
 alias gs='git status'
+alias gt='git tag -a'
+alias gtd='git tag -d'
 # }}}
 
 # Kubernetes{{{
@@ -145,6 +149,10 @@ alias mst='multipass start'
 alias msp='multipass stop'
 alias md='multipass delete'
 alias mdp='multipass delete --purge'
+# }}}
+
+# Python{{{
+alias p='python3'
 # }}}
 
 # Vim{{{
