@@ -138,9 +138,9 @@ nnoremap <leader>o o<Esc><Plug>NERDCommenterComment A
 inoremap jk <Esc>l
 inoremap <Esc> <nop>
 " Quicker brackets
-" inoremap ( ()<Left>
-" inoremap [ []<Left>
-" inoremap { {}<Left>
+inoremap ( ()<Left>
+inoremap [ []<Left>
+inoremap { {}<Left>
 " Quicker quotes
 inoremap " ""<Left>
 inoremap ' ''<Left>
@@ -328,9 +328,9 @@ let g:airline_theme="catppuccin"
 "}}}
 
 " COLORSCHEMES ----------------- {{{
-" colorscheme molokai
+colorscheme molokai
 " colorscheme gruvbox
-colorscheme catppuccin-mocha
+" colorscheme catppuccin-mocha
 "}}}
 
 " EMMET ---- -------------------- {{{
