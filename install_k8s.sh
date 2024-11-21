@@ -71,10 +71,6 @@ sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list   # helps tools such as c
 sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
 
-mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-sudo chown $(id -u):$(id -g) $HOME/.kube/config
-
 echo -e "Before running any kubectl commands, you need to:\n"
 echo -e "1. open vi /etc/containerd/config.toml\n
 2. change this SystemdCgroup = false to SystemdCgroup = true\n
