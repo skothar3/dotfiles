@@ -88,6 +88,7 @@ nnoremap <leader>t :bo term ++rows=7<CR>. ~/.bashrc<CR>. ~/.bash_aliases<CR>
 nnoremap Y y$
 " Don't let x and c spoil the yank register
 nnoremap x "_x
+nnoremap X "_X
 nnoremap c "_c
 " More convenient marks
 nnoremap ' `
@@ -115,6 +116,8 @@ nnoremap <leader>v. :e ~/.bash_profile <bar> :e ~/.bashrc <bar> :e ~/.bash_alias
 " Cycle buffers
 nnoremap <Tab> :bn<CR>
 nnoremap <S-Tab> :bp<CR>
+nnoremap <BS> <c-^>
+nnoremap <leader>b :ls<cr>:b<space>
 " Shortcut to access window functions (cycling, resizing etc.)
 nnoremap ; <C-w>
 nnoremap ;; <C-w>w
@@ -136,6 +139,7 @@ nnoremap <leader>o o<Esc><Plug>NERDCommenterComment A
 " INSERT MODE ---------------------- 
 " Escape to normal mode and stay in place
 inoremap jk <Esc>l
+inoremap JK <Esc>l
 inoremap <Esc> <nop>
 " Quicker brackets
 inoremap ( ()<Left>

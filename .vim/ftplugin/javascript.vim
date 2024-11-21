@@ -20,4 +20,8 @@ nnoremap <buffer> <localleader>; mqA;<Esc>`q
 " INSERT MODE ---------------------- 
 " Quick console.log()
 inoremap <buffer> cll console.log();<Left><Left>
+" Quick createElement
+inoremap <buffer> dce document.createElement("");<Left><Left><Left>
+" Quick querySelector
+inoremap <buffer> dqs document.querySelector("");<Left><Left><Left>
 "}}}

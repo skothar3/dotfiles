@@ -23,7 +23,7 @@ tags
 [._]*.un~
 
 # Node modules 
-.eslintrc.json
+eslintrc.json
 jsconfig.json
 .stylelintrc.json
 **/node_modules/

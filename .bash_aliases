@@ -53,21 +53,23 @@ alias .b='. ~/.bash_profile'
 
 # Docker{{{
 alias d='docker'
-alias dps='docker ps'
-alias di='docker image'
-alias dils='docker image ls'
 alias dc='docker container'
-alias dcls='docker container ls'
-alias dcr='docker container run'
-alias drm='docker rm'
-alias dn='docker network'
-alias dnls='docker network ls'
-alias dv='docker volume'
-alias dvls='docker volume ls'
 alias dcc='docker compose'
+alias dccd='docker compose down'
 alias dccu='docker compose up'
 alias dccud='docker compose up -d'
-alias dccd='docker compose down'
+alias dcls='docker container ls'
+alias dcr='docker container run'
+alias di='docker image'
+alias dils='docker image ls'
+alias dn='docker network'
+alias dnls='docker network ls'
+alias dps='docker ps'
+alias dr='docker run'
+alias dri='docker run -it'
+alias drm='docker rm'
+alias dv='docker volume'
+alias dvls='docker volume ls'
 # }}}
 
 # Git{{{
@@ -144,11 +146,13 @@ fi
 # Multipass{{{
 alias m='multipass'
 alias ml='multipass launch'
-alias mll='multipass list'
+alias mls='multipass list'
+alias msh='multipass shell'
 alias mst='multipass start'
 alias msp='multipass stop'
 alias md='multipass delete'
 alias mdp='multipass delete --purge'
+alias mp='multipass purge'
 # }}}
 
 # Python{{{
