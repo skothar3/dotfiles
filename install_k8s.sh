@@ -1,20 +1,3 @@
-## INSTALL KUBECTL
-sudo apt-get update
-# apt-transport-https may be a dummy package; if so, you can skip that package
-sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
-
-# If the folder `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
-# sudo mkdir -p -m 755 /etc/apt/keyrings
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg # allow unprivileged APT programs to read this keyring
-
-# This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
-sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list   # helps tools such as command-not-found to work correctly
-
-sudo apt-get update
-sudo apt-get install -y kubectl
-
 ## INSTALL DOCKER
 for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
 
@@ -36,10 +19,12 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin 
 
 sudo docker run hello-world
 
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
 # Set containerd as the container runtime
 sudo mkdir -p /etc/containerd
-containerd config default | sudo tee /etc/containerd/
-config.toml
+containerd config default | sudo tee /etc/containerd/config.toml
 
 sudo systemctl restart containerd
 
@@ -68,7 +53,31 @@ net.bridge.bridge-nf-call-iptables = 1
 EOF
 sudo sysctl --system
 
-## INSTALL KUBEADM
+## INSTALL KUBECTL KUBELET KUBEADM
 sudo apt-get update
-sudo apt-get install -y kubelet kubeadm
+# apt-transport-https may be a dummy package; if so, you can skip that package
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
+
+# If the folder `/etc/apt/keyrings` does not exist, it should be created before the curl command, read the note below.
+# sudo mkdir -p -m 755 /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.31/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+sudo chmod 644 /etc/apt/keyrings/kubernetes-apt-keyring.gpg # allow unprivileged APT programs to read this keyring
+
+# This overwrites any existing configuration in /etc/apt/sources.list.d/kubernetes.list
+echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.31/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+sudo chmod 644 /etc/apt/sources.list.d/kubernetes.list   # helps tools such as command-not-found to work correctly
+
+
+sudo apt-get install -y kubelet kubeadm kubectl
 sudo apt-mark hold kubelet kubeadm kubectl
+
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+echo -e "Before running any kubectl commands, you need to:\n"
+echo -e "1. open vi /etc/containerd/config.toml\n
+2. change this SystemdCgroup = false to SystemdCgroup = true\n
+3. sudo systemctl restart containerd\n
+4. sudo systemctl restart kubelet"
+echo -e "Logout and log back in to update docker user permissions\n"
