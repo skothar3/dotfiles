@@ -114,8 +114,10 @@ nnoremap : :setlocal number norelativenumber<CR>:
 " nnoremap <leader>vbp :e ~/.bash_profile<CR>
 nnoremap <leader>v. :e ~/.bash_profile <bar> :e ~/.bashrc <bar> :e ~/.bash_aliases <bar> :e ~/.vimrc <bar> :e ~/.inputrc <bar> :e ~/.dotfiles/install.sh <CR>
 " Cycle buffers
-nnoremap <Tab> :bn<CR>
-nnoremap <S-Tab> :bp<CR>
+nnoremap <Tab> :tabn<CR>
+nnoremap <S-Tab> :tabp<CR>
+" nnoremap <Tab> :bn<CR>
+" nnoremap <S-Tab> :bp<CR>
 nnoremap <BS> <c-^>
 nnoremap <leader>b :ls<cr>:b<space>
 " Shortcut to access window functions (cycling, resizing etc.)
